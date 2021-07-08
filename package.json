@@ -5,7 +5,7 @@
   "main": "src/pages/index.html",
   "scripts": {
     "start": "parcel src/pages/*.html -p 3000",
-    "build": "parcel build src/layouts/*.html "
+    "build": "./node_modules/.bin/parcel build index.html"
   },
   "keywords": [],
   "author": "",
