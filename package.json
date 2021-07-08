@@ -2,10 +2,10 @@
   "name": "yandex-messenger",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "src/pages/index.html",
   "scripts": {
     "start": "parcel src/pages/*.html -p 3000",
-    "build": "parcel build src/layouts/*.html"
+    "build": "parcel build src/layouts/*.html "
   },
   "keywords": [],
   "author": "",
