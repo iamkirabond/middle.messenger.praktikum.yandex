@@ -1,7 +1,8 @@
-https://github.com/iamkirabond/yandex-messenger/pull/1
+https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/1
+
 ## Описание
 
-Repos - https://github.com/iamkirabond/yandex-messenger
+Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
 
 ## Design
 
@@ -18,6 +19,7 @@ Repos - https://github.com/iamkirabond/yandex-messenger
 https://wizardly-poitras-9dc7b7.netlify.app
 
 ## Страницы 
+
 https://wizardly-poitras-9dc7b7.netlify.app/500.html
 https://wizardly-poitras-9dc7b7.netlify.app/404.html
 https://wizardly-poitras-9dc7b7.netlify.app/profile.html
