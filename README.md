@@ -1,7 +1,4 @@
-# yandex-messenger
-
-
-Sprint 1 PR - https://github.com/iamkirabond/yandex-messenger/pull/1
+https://github.com/iamkirabond/yandex-messenger/pull/1
 ## Описание
 
 Repos - https://github.com/iamkirabond/yandex-messenger
