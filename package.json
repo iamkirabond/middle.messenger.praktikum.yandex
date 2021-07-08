@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "parcel src/pages/*.html -p 3000 && node ./server.js",
-    "build": "parcel build index.html"
+    "build": "parcel build src/pages/*.html --no-cache"
   },
   "keywords": [],
   "author": "",
