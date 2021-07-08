@@ -2,10 +2,9 @@
   "name": "yandex-messenger",
   "version": "1.0.0",
   "description": "",
-  "main": "src/pages/index.html",
   "scripts": {
     "start": "parcel src/pages/*.html -p 3000",
-    "build": "./node_modules/.bin/parcel build ./src/*.html"
+    "build": "parcel build ./src/pages/*.html"
   },
   "keywords": [],
   "author": "",
