@@ -2,10 +2,10 @@
   "name": "yandex messenger",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
-    "start": "parcel src/pages/*.html -p 3000 && node ./server.js",
-    "build": "parcel build src/pages/*.html --no-cache"
+    "start": "parcel src/pages/*.html -p 3000",
+    "build": "parcel build src/layouts/*.html"
   },
   "keywords": [],
   "author": "",
