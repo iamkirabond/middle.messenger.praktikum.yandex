@@ -11,8 +11,8 @@ const user = {
     image: "static/images/basic-img.png",
 };
 
-const tamplate = Handlebars.compile(Profile);
-const htmlContent = tamplate(user);
-const pageContent = document.getElementById('page-content');
+const template = Handlebars.compile(Profile);
+const htmlContent = template(user);
+const pageContent = document.getElementById('page-content')!;
 
 pageContent.innerHTML = htmlContent;

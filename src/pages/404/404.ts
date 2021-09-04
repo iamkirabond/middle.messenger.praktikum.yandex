@@ -7,9 +7,9 @@ const data = {
     description: 'Не туда попали',
 };
 
-const tamplate = Handlebars.compile(Error);
-const htmlContent = tamplate(data);
+const template = Handlebars.compile(Error);
+const htmlContent = template(data);
 
-const pageContent = document.getElementById('page-content');
+const pageContent = document.getElementById('page-content')!;
 
 pageContent.innerHTML = htmlContent;
