@@ -1,3 +1,5 @@
+import EventBus from './eventBus'
+
 class Block {
     static EVENTS = {
         INIT: "init",
@@ -6,16 +8,19 @@ class Block {
         FLOW_RENDER: "flow:render"
     };
 
-    _element = null;
-    _meta = null;
-
     /** JSDoc
      * @param {string} tagName
      * @param {Object} props
      *
      * @returns {void}
      */
-    constructor(tagName = "div", props = {}) {
+    _meta: {tagName:string, props: {[key: string]: any} };
+    _element: HTMLElement;
+    eventBus: () => EventBus;
+    props: {[key: string]: any};
+
+
+    constructor(tagName:string = "div", props: object = {}) {
         const eventBus = new EventBus();
         this._meta = {
             tagName,
@@ -52,9 +57,9 @@ class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    componentDidMount(oldProps) {}
+    componentDidMount() {}
 
-    _componentDidUpdate(oldProps, newProps) {
+    _componentDidUpdate(oldProps: {[key: string]: any}, newProps: {[key: string]: any}) {
         const response = this.componentDidUpdate(oldProps, newProps);
         if (!response) {
             return;
@@ -62,11 +67,11 @@ class Block {
         this._render();
     }
 
-    componentDidUpdate(oldProps, newProps) {
+    componentDidUpdate(oldProps: {[key: string]: any}, newProps: {[key: string]: any}) {
         return true;
     }
 
-    setProps = nextProps => {
+    setProps = (nextProps: {[key: string]: any}) => {
         if (!nextProps) {
             return;
         }
@@ -79,11 +84,13 @@ class Block {
     }
 
     _render() {
-        const block = this.render();
+        const block: string = this.render();
         this._element.innerHTML = block;
     }
 
-    render() {}
+    render() {
+        return '';
+    }
 
     getContent() {
         return this.element;
@@ -93,11 +100,11 @@ class Block {
         const self = this;
 
         return new Proxy(props, {
-            get(target, prop) {
+            get(target: {[key: string]: any}, prop: string) {
                 const value = target[prop];
                 return typeof value === "function" ? value.bind(target) : value;
             },
-            set(target, prop, value) {
+            set(target: {[key: string]: any}, prop:string, value: any) {
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
                 return true;
@@ -108,7 +115,7 @@ class Block {
         });
     }
 
-    _createDocumentElement(tagName) {
+    _createDocumentElement(tagName: string) {
         return document.createElement(tagName);
     }
 

@@ -1,4 +1,6 @@
 class EventBus {
+    listeners: {[key: string]: any}
+
     constructor() {
         this.listeners = {};
     }
@@ -31,3 +33,5 @@ class EventBus {
         });
     }
 }
+
+export default EventBus;

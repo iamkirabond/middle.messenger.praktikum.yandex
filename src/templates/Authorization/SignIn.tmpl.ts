@@ -17,8 +17,13 @@ export const SignIn =
         ${button({
             text: `{{submitBtn}}`,
             type: 'submit',
-            style: `signin-btn`
+            style: `signin-btn`,
         })}
     </form>
-    <button data-link="/signUp" class="signup-btn">{{returnBtn}}</button>
+    ${button({
+        text: `{{returnBtn}}`,
+        type: 'submit',
+        style: `signup-btn`,
+        link: '/signUp',
+    })}
 </div>`;

@@ -17,6 +17,9 @@ button{
     background: none;
     border: none;
 }
+.button:hover{
+    cursor: pointer;
+}
 
 #page-content{
     height: 100vh;
