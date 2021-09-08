@@ -1,4 +1,6 @@
-export const SignIn = 
+import  { button } from '../../components/button/Button'
+
+export const SignIn =
     ` <div class="signin-window">
     <h1 class="signin-title">{{title}}</h1>
     <form class="signin-form" action="">
@@ -12,7 +14,11 @@ export const SignIn =
                 <input id="signin-password" type="password" class="signin-input">
             </div>
         </div>
-        <button class="signin-btn">{{submitBtn}}</button>
+        ${button({
+            text: `{{submitBtn}}`,
+            type: 'submit',
+            style: `signin-btn`
+        })}
     </form>
-    <a href="/signUp" class="signup-btn">{{returnBtn}}</a>
+    <button data-link="/signUp" class="signup-btn">{{returnBtn}}</button>
 </div>`;

@@ -13,6 +13,10 @@ $red: #FF0000;
     margin: 0;  
     box-sizing: border-box;
 }
+button{
+    background: none;
+    border: none;
+}
 
 #page-content{
     height: 100vh;
@@ -24,4 +28,13 @@ $red: #FF0000;
 
 .red{
     color: $red !important;
+}
+
+.primary{
+    color: $white;
+    background-color: $accent-color;
+}
+.trancparent{
+    color: $accent-color;
+    background: none;
 }
