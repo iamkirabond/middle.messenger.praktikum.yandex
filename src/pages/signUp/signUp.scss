@@ -33,17 +33,17 @@ body{
         display: flex;
         flex-direction: column;
         width: 100%;
-        .signin-input-label{
+        .input-label{
             font-size: 9px;
             line-height: 9px;
             color: $label-color;
             margin-bottom: 8px;
         }
-        .signin-input, .signin-btn{
+        .input, .signin-btn{
             font-size: 13px;
             line-height: 13px;
         }
-        .signin-input{
+        .input{
             border: none;
             width: 100%;
             border-bottom: 1px solid $accent-color;

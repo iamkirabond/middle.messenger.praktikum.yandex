@@ -79,6 +79,7 @@ class Block {
         Object.assign(this.props, nextProps);
     };
 
+    // @ts-ignore
     get element() {
         return this._element;
     }
@@ -104,7 +105,7 @@ class Block {
                 const value = target[prop];
                 return typeof value === "function" ? value.bind(target) : value;
             },
-            set(target: {[key: string]: any}, prop:string, value: any) {
+            set: (target: { [key: string]: any; }, prop: string, value: any) => {
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
                 return true;
@@ -127,3 +128,5 @@ class Block {
         this.getContent().style.display = "none";
     }
 }
+
+export default Block;

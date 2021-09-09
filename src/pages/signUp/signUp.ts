@@ -1,25 +1,32 @@
 import Handlebars from 'handlebars';
-import { SignUp } from '../../templates/Authorization/SignUp.tmpl';
+import { SignUpForm } from '../../templates/Authorization/SignUp.tmpl';
+import Block from "../../utils/block";
+import InputField from "../../components/inputField/InputField";
+import Button from "../../components/button/Button";
 
 
-const data = {
-    title: 'Регистрация',
-    inputs: {
-        login: "Логин",
-        password:  "Пароль",
-        passwordDup:  "Пароль (ещё раз)",
-        mail: "Почта",
-        name: "Имя",
-        lastName: "Фамилия",
-        phone: "Телефон"
-    },       
-    submitBtn: "Авторизоваться",
-    returnBtn: "Нет аккаунта?"
-};
+class SignUpPage extends Block{
+    constructor(props) {
+        super('div', props);
+    }
 
-const tamplate = Handlebars.compile(SignUp);
-const htmlContent = tamplate(data);
+    render() {
+        const templateForm = Handlebars.compile(SignUpForm);
+        const data = this.props;
 
-const pageContent = document.getElementById('page-content');
+        return templateForm({
+            title: data.title,
+            mail: new InputField(data.mail).render(),
+            login: new InputField(data.login).render(),
+            name: new InputField(data.name).render(),
+            lastname: new InputField(data.lastname).render(),
+            phone: new InputField(data.phone).render(),
+            password: new InputField(data.password).render(),
+            passwordDub: new InputField(data.passwordDub).render(),
+            signInBtn: new Button(data.signInBtn).render(),
+            signUpBtn: new Button(data.signUpBtn).render(),
+        });
+    }
+}
 
-pageContent.innerHTML = htmlContent;
+export default SignUpPage;

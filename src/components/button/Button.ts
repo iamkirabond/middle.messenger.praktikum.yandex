@@ -1,12 +1,16 @@
 import Handlebars from 'handlebars';
 import { buttonTmpl } from "../../templates/button/button.tmpl";
+import Block from '../../utils/block'
 
+class Button extends Block{
+    constructor(props: { text: string; type: string; style?: string; link?: string,}) {
+        super('div', props);
+    }
 
-const templateBtn = Handlebars.compile(buttonTmpl)
-const button = function (
-    props: { text: string; type: string; style?: string; link?: string,}){
-    props.style = props.style ? `button ${props.style}` : '';
-    return templateBtn(props);
+    render(){
+        const templateBtn = Handlebars.compile(buttonTmpl)
+        return templateBtn(this.props);
+    }
 }
 
-export { button };
+export default Button;

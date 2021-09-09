@@ -1,21 +1,26 @@
 import Handlebars from 'handlebars';
-import { SignIn } from '../../templates/Authorization/SignIn.tmpl';
+import { SignInForm } from '../../templates/Authorization/SignIn.tmpl';
+import Block from "../../utils/block";
+import InputField from "../../components/inputField/InputField";
+import Button from "../../components/button/Button";
 
 
-const data = {
-    title: 'Вход',
-    inputs: {
-        login: "Логин",
-        password:  "Пароль"
-    },       
-    submitBtn: "Авторизоваться",
-    returnBtn: "Нет аккаунта?"
-};       
 
+class SignInPage extends Block{
+    constructor(props) {
+        super('div', props);
+    }
 
-const tamplate = Handlebars.compile(SignIn);
-const htmlContent = tamplate(data);
+    render() {
+        const templateForm = Handlebars.compile(SignInForm);
+        const data = this.props;
+        return templateForm({
+            login: new InputField(data.login).render(),
+            password: new InputField(data.password).render(),
+            signInBtn: new Button(data.signInBtn).render(),
+            signUpBtn: new Button(data.signUpBtn).render(),
+        });
+    }
+}
 
-const pageContent = document.getElementById('page-content');
-
-pageContent.innerHTML = htmlContent;
+export default SignInPage;

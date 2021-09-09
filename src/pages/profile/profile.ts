@@ -1,18 +1,29 @@
 import Handlebars from 'handlebars';
-import { Profile } from '../../templates/Profile/Profile.tmpl';
+import Block from "../../utils/block";
+import {ProfileForm} from '../../templates/Profile/Profile.tmpl'
+import ProfileField from "../../components/profileField/profileField";
 
-const user = {
-    name: "Иван",
-    lastname: "Иванов", 
-    nickname: "Иван",
-    mail: "pochta@yandex.ru",
-    login: "ivanivanov",
-    phone: "+7 (909) 967 30 30",
-    image: "static/images/basic-img.png",
-};
+class Profile extends Block{
+    constructor(props) {
+        super('div', props);
+    }
 
-const template = Handlebars.compile(Profile);
-const htmlContent = template(user);
-const pageContent = document.getElementById('page-content')!;
+    render(){
+        const templateForm = Handlebars.compile(ProfileForm);
+        const data = this.props;
 
-pageContent.innerHTML = htmlContent;
+        return templateForm({
+            profileName: data.name.data,
+            mail: new ProfileField(data.mail).render(),
+            login: new ProfileField(data.login).render(),
+            name: new ProfileField(data.name).render(),
+            lastname: new ProfileField(data.lastname).render(),
+            nickname: new ProfileField(data.nickname).render(),
+            phone: new ProfileField(data.phone).render(),
+        })
+    }
+}
+
+export default Profile;
+
+
