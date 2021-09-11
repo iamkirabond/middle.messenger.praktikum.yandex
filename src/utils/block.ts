@@ -1,4 +1,4 @@
-import EventBus from './eventBus'
+import { EventBus }  from './eventBus'
 
 class Block {
     static EVENTS = {
@@ -14,7 +14,7 @@ class Block {
      *
      * @returns {void}
      */
-    _meta: {tagName:string, props: {[key: string]: any} };
+    _meta: {tagName:string, props: {[key: string]: any}};
     _element: HTMLElement;
     eventBus: () => EventBus;
     props: {[key: string]: any};
@@ -86,11 +86,30 @@ class Block {
 
     _render() {
         const block: string = this.render();
+        this._removeEvents();
         this._element.innerHTML = block;
+        this._addEvents();
     }
 
     render() {
         return '';
+    }
+
+    _addEvents() {
+        const {events = {}} = this.props;
+
+        Object.keys(events).forEach(eventName => {
+            console.log(this._element.children[0])
+            this._element.addEventListener(eventName, events[eventName]);
+        });
+    }
+
+    _removeEvents() {
+        const {events = {}} = this.props;
+
+        Object.keys(events).forEach(eventName => {
+            this._element.removeEventListener(eventName, events[eventName]);
+        });
     }
 
     getContent() {

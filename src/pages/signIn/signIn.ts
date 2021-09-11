@@ -3,12 +3,23 @@ import { SignInForm } from '../../templates/Authorization/SignIn.tmpl';
 import Block from "../../utils/block";
 import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
+import * as events from "events";
 
 
 
 class SignInPage extends Block{
     constructor(props) {
-        super('div', props);
+        super('div', {
+            ...props,
+            events: {
+                click: event => this.clickHandler(event),
+            }
+        })
+    }
+
+    clickHandler (event: Event){
+        event.preventDefault();
+        alert('here the click')
     }
 
     render() {

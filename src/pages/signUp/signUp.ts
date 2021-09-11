@@ -19,10 +19,10 @@ class SignUpPage extends Block{
             mail: new InputField(data.mail).render(),
             login: new InputField(data.login).render(),
             name: new InputField(data.name).render(),
-            lastname: new InputField(data.lastname).render(),
+            lastName: new InputField(data.lastName).render(),
             phone: new InputField(data.phone).render(),
             password: new InputField(data.password).render(),
-            passwordDub: new InputField(data.passwordDub).render(),
+            passwordDup: new InputField(data.passwordDup).render(),
             signInBtn: new Button(data.signInBtn).render(),
             signUpBtn: new Button(data.signUpBtn).render(),
         });
