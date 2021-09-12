@@ -1,5 +1,4 @@
-export const ChatsPageTmpl =
-    `<div class="chats-page">
+export const ChatsPageTmpl = `<div class="chats-page">
         <div class="chats-left-panel">
             <button class="profile-btn">Профиль</button>
             <input class="search" placeholder="Поиск"/>

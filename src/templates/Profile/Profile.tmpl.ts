@@ -1,5 +1,4 @@
-export const ProfileForm =
-    ` <div class="profile-wrapper">
+export const ProfileForm = ` <div class="profile-wrapper">
         <div class="back-btn">
             <div class="back-btn-bcg"></div>
         </div>

@@ -3,4 +3,4 @@ export const ProfileFieldTmpl = `
     <span class="profile-input-label">{{name}}</span>
     <span class="profile-input">{{data}}</span>
 </div>
-`
+`;

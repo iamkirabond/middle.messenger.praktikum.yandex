@@ -1,8 +1,8 @@
-import Chats from "./chats";
-import {render} from "../../utils/renderDOM";
+import Chats from './chats';
+import { render } from '../../utils/renderDOM';
 
 const data = {
-    title: 'Вход',
+  title: 'Вход',
 
 };
 

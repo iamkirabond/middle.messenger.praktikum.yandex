@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "parcel src/pages/*.html -p 3000",
-    "build": "parcel build ./src/pages/*.html"
+    "build": "parcel build ./src/pages/*.html",
+    "lint": "npx eslint . --fix --ext .ts && npx stylelint --fix **/*.scss"
   },
   "keywords": [],
   "author": "",

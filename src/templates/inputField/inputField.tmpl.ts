@@ -3,4 +3,4 @@ export const InputFieldTmpl = `
     <label class="input-label">{{name}}</label>
     <input data-type="{{dataType}}" type="{{type}}" class="input" >
 </div>
-`
+`;
