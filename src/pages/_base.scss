@@ -37,7 +37,10 @@ button{
     color: $white;
     background-color: $accent-color;
 }
-.trancparent{
+.transparent{
     color: $accent-color;
     background: none;
+}
+.input-error{
+    border-color: $red !important;
 }

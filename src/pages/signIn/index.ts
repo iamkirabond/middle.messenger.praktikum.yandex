@@ -1,15 +1,19 @@
 import SignInPage from "./signIn";
+import {render} from "../../utils/renderDOM";
 
 const data = {
+    title: 'Вход',
     login: {
         type: 'text',
         name: 'Логин',
         prefix: 'signin',
+        dataType: 'login'
     },
     password: {
         type: 'password',
         name: 'Пароль',
         prefix: 'signin',
+        dataType: 'password'
     },
     signInBtn: {
         text: `Авторизоваться`,
@@ -26,22 +30,6 @@ const data = {
 };
 
 
-let clickHandler = (event: Event) => {
-    event.preventDefault();
-    alert('hire')
-}
-
 const page = new SignInPage(data);
 
-const pageContent = document.getElementById('page-content');
-pageContent.innerHTML = page.render();
-
-/*const signInForm = document.getElementById('signin-form');
-
-if (signInForm) {
-    signInForm.addEventListener('keydown', (event: Event) => {
-        if (event.code === 'Enter') {
-            event.preventDefault();
-        }
-    });
-}*/
+render('#page-content', page);

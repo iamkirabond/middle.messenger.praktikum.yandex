@@ -99,7 +99,6 @@ class Block {
         const {events = {}} = this.props;
 
         Object.keys(events).forEach(eventName => {
-            console.log(this._element.children[0])
             this._element.addEventListener(eventName, events[eventName]);
         });
     }

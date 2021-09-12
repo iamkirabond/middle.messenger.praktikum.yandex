@@ -1,56 +1,64 @@
 import SignUpPage from "./signUp";
+import {render} from "../../utils/renderDOM";
 
 const data = {
     title: 'Регистрация',
     login: {
         type: 'text',
         name: 'Логин',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'login',
     },
     password: {
-        type: 'text',
+        type: 'password',
         name: 'Пароль',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'password'
     },
     passwordDup: {
-        type: 'text',
+        type: 'password',
         name: 'Пароль (ещё раз)',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'password'
     },
-    mail: {
+    email: {
         type: 'text',
         name: 'Почта',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'email'
     },
     name: {
         type: 'text',
         name: 'Имя',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'first_name'
     },
     lastName: {
         type: 'text',
         name: 'Фамилия',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'second_name'
     },
     phone: {
         type: 'text',
         name: 'Телефон',
-        prefix: 'signup'
+        prefix: 'signup',
+        dataType: 'phone'
+    },
+    signUpBtn: {
+        text: `Зарегистрироваться`,
+        type: 'submit',
+        style: `signup-btn`,
+        id: 'signup-btn',
     },
     signInBtn: {
         text: `Авторизоваться`,
         type: 'submit',
         style: `signin-btn`,
-    },
-    signUpBtn: {
-        text: `Нет аккаунта?`,
-        type: 'submit',
-        style: `signup-btn`,
-        link: '/signUp',
+        link: '/signIn',
     },
 };
 
 const page = new SignUpPage(data);
 
-const pageContent = document.getElementById('page-content');
-pageContent.innerHTML = page.render();
+render('#page-content', page);

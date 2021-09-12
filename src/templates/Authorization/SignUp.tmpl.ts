@@ -2,14 +2,14 @@ export const SignUpForm =
     ` <div class="signin-window">
     <h1 class="signin-title">{{title}}</h1>
     <form class="signin-form form" action="">
-            {{{mail}}}
+            {{{email}}}
             {{{login}}}
-            {{{name}}}
-            {{{lastName}}}
+            {{{first_name}}}
+            {{{second_name}}}
             {{{phone}}}
             {{{password}}}
             {{{passwordDup}}}
-            {{{signInBtn}}}
+            {{{signUpBtn}}}
     </form>
-    {{{signUpBtn}}}
+    {{{signInBtn}}}
 </div>`;

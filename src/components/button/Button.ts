@@ -4,10 +4,9 @@ import Block from '../../utils/block'
 
 
 class Button extends Block{
-    constructor(props: { text: string; type: string; style?: string; link?: string;}) {
+    constructor(props: { text: string; type: string; style?: string; link?: string; id?: string;}) {
         super('div', props);
     }
-
 
     render(){
         const templateBtn = Handlebars.compile(buttonTmpl);
