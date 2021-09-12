@@ -5,6 +5,7 @@ https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/2
 Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
 
 Спринт 2
+
 Перевела на TS
 Компонентный подход
 Валидация для форм
