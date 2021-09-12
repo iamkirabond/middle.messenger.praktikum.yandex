@@ -1,8 +1,21 @@
-https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/1
+https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/2
 
 ## Описание
 
 Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
+
+Спринт 2
+Перевела на TS
+Компонентный подход
+Валидация для форм
+Класс запросов
+Линтер
+Добавилась верстка страницы чатов
+
+Спринт 1
+
+Сверстано большинство старниц
+Добавлен Parcel
 
 ## Design
 
