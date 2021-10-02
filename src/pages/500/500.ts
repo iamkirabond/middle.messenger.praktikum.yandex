@@ -10,6 +10,7 @@ const data = {
 const template = Handlebars.compile(Error);
 const htmlContent = template(data);
 
-const pageContent = document.getElementById('page-content')!;
-
-pageContent.innerHTML = htmlContent;
+const pageContent = document.getElementById('page-content');
+if (pageContent) {
+    pageContent.innerHTML = htmlContent;
+}

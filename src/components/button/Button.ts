@@ -2,14 +2,21 @@ import Handlebars from 'handlebars';
 import { buttonTmpl } from "../../templates/button/button.tmpl";
 import Block from '../../utils/block'
 
+interface ButtonProps {
+    text: string;
+    type: string;
+    style?: string;
+    link?: string;
+    id?: string;
+}
+const templateBtn = Handlebars.compile(buttonTmpl);
 
 class Button extends Block{
-    constructor(props: { text: string; type: string; style?: string; link?: string; id?: string;}) {
+    constructor(props: ButtonProps) {
         super('div', props);
     }
 
     render(){
-        const templateBtn = Handlebars.compile(buttonTmpl);
         return templateBtn(this.props);
     }
 }
