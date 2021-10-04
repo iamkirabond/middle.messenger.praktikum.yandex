@@ -18,14 +18,11 @@
             .profile-image-wrapper{
                 width: 130px;
                 height: 130px;
-                background: #EFEFEF;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-image: url(../../../static/images/basic-img.png);
-                background-repeat: no-repeat;
-                background-position: center;
+                background: #EFEFEF url(../../../static/images/basic-img.png) no-repeat center;
                 margin-bottom: 20px;
             }
             .profile-name{
@@ -35,7 +32,7 @@
                 margin-bottom: 60px;
             }        
         }
-        .profile-info{
+        .profile-input-block{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -51,12 +48,12 @@
                 background: $nonactive-input;
             }
     
-            .profile-field, .profile-data{
+            .profile-input-label, .profile-input{
                 font-size: 13px;
                 line-height: 13px;
                 color: $primary-color;
             }
-            .profile-data{
+            .profile-input{
                 color: $label-color
             }
             
@@ -66,11 +63,8 @@
             margin-top: 60px;
             display: flex;  
             flex-direction: column;
-           
-            
             
             .profile-btn{
-                
                 position: relative;
                 text-align: left;
                 background: none;
