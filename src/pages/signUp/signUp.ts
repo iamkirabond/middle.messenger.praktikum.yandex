@@ -6,7 +6,7 @@ import Button from "../../components/button/Button";
 import {validationForm} from "../../utils/validation";
 
 
-class SignUpPage extends Block{
+class SignUp extends Block{
     constructor(props) {
         super('div', {...props,
             events: {
@@ -67,4 +67,4 @@ class SignUpPage extends Block{
     }
 }
 
-export default SignUpPage;
+export default SignUp;
