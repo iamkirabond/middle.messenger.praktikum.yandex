@@ -1,5 +1,7 @@
 import Profile from './profile';
 
+
+export function ProfileWrapper(){
 const user = {
   name: {
     name: 'Имя',
@@ -28,7 +30,5 @@ const user = {
   image: 'static/images/basic-img.png',
 };
 
-const page = new Profile(user);
-
-const pageContent = document.getElementById('page-content');
-pageContent.innerHTML = page.render();
+  return new Profile(user);
+}

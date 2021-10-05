@@ -4,7 +4,7 @@ import Block from "../../utils/block";
 import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
 import {validationForm} from "../../utils/validation";
-
+import './signIn.scss';
 
 
 class SignInPage extends Block{

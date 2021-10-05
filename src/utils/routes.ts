@@ -21,7 +21,7 @@ class Route {
 
     _render(query, block) {
         const root = document.querySelector(query);
-        root.textContent = block.getContent();
+        root.appendChild(block.getContent());
         return root;
     }
   
