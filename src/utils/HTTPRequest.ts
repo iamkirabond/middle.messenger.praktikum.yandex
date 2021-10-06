@@ -31,19 +31,19 @@ export class HTTPrequest {
     
     get = (url, options = {}) => {
 
-        return this.request(url, {...options, method: METHODS.GET}, options.timeout);
+        return this.request(this.baseUrl + url, {...options, method: METHODS.GET}, options.timeout);
     };
 
     post = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
+        return this.request(this.baseUrl + url, {...options, method: METHODS.POST}, options.timeout);
     };
 
     put = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
+        return this.request(this.baseUrl + url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
     delete = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
+        return this.request(this.baseUrl + url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
     request = (url, options = {}, timeout = 5000) => {
