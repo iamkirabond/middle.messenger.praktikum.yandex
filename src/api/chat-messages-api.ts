@@ -8,4 +8,4 @@ class ChatMessagesAPI extends BaseAPI {
         return chatMessagesAPIInstance.get(`/${id}`);
     }
 }
- 
+  

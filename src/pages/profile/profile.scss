@@ -54,7 +54,10 @@
                 color: $primary-color;
             }
             .profile-input{
-                color: $label-color
+                color: $label-color;
+                text-align: end;
+                border: none;
+                outline: none;
             }
             
             
@@ -73,6 +76,10 @@
                 line-height: 13px;
                 color: $accent-color;
                 margin: 10px 0;
+
+                &:hover{
+                    cursor: pointer;
+                }
 
                 &:not(:last-child)::after{
                     content: '';

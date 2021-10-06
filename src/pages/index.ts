@@ -9,7 +9,7 @@ import { ChatsWrapper } from './chats';
 const router = new Router('#page-content');
 
 router
-    .use('/', SignInWrapper)
+    .use('/', SignUpWrapper)
     .use('/signin', SignInWrapper)
     .use('/signup', SignUpWrapper)
     .use('/profile', ProfileWrapper)

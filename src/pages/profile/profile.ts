@@ -4,13 +4,14 @@ import { ProfileForm } from '../../templates/Profile/Profile.tmpl';
 import ProfileField from '../../components/profileField/profileField';
 import './profile.scss';
 
+const templateForm = Handlebars.compile(ProfileForm);
+
 class Profile extends Block {
   constructor(props) {
     super('div', props);
   }
 
   render() {
-    const templateForm = Handlebars.compile(ProfileForm);
     const data = this.props;
 
     return templateForm({
