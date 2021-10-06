@@ -3,17 +3,17 @@ import {HTTPrequest} from '../utils/HTTPRequest';
 
 
 const host = 'https://ya-praktikum.tech';
-const chatAPIInstance = new HTTPrequest(`${host}/api/v2/auth`);
+const authAPIInstance = new HTTPrequest(`${host}/api/v2/auth`);
 
-class ChatAPI extends BaseAPI {
+class AuthAPI extends BaseAPI {
 
     signin(){
-        return chatAPIInstance.post('/signin', {title: 'string'});
+        return authAPIInstance.post('/signin', {title: 'string'});
     }
     getUserInfo(){
-        return chatAPIInstance.get('/user', {title: 'string'});
+        return authAPIInstance.get('/user', {title: 'string'});
     }
     userExit(){
-        return chatAPIInstance.post('/logout', {title: 'string'});
+        return authAPIInstance.post('/logout', {title: 'string'});
     }
 }
