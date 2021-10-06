@@ -22,7 +22,13 @@ function queryStringify(data) {
     }, '?');
 }
 
-class HTTPTransport {
+export class HTTPrequest {
+    baseUrl: string;
+  
+    constructor(baseUrl = '/') {
+      this.baseUrl = baseUrl;
+    }
+    
     get = (url, options = {}) => {
 
         return this.request(url, {...options, method: METHODS.GET}, options.timeout);
