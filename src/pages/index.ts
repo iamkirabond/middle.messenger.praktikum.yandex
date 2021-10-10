@@ -4,7 +4,7 @@ import { Error500Wrapper } from './500';
 import { SignInWrapper } from './signIn';
 import { SignUpWrapper } from './signUp';
 import { ProfileWrapper } from './profile';
-import { ChatsWrapper } from './chats';
+import { ChatsWrapper } from './chats'; 
 
 const router = new Router('#page-content');
 

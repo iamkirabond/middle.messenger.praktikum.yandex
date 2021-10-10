@@ -1,6 +1,6 @@
 export const ChatsPageTmpl = `<div class="chats-page">
         <div class="chats-left-panel">
-            <button class="profile-btn">Профиль</button>
+            {{{profileBtn}}}
             <input class="search" placeholder="Поиск"/>
             <div class="chats-list">
                 <div class="chats-item">
