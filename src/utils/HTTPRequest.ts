@@ -1,3 +1,5 @@
+import Error500 from "../pages/500/500";
+
 const METHODS = {
     GET: 'GET',
     POST: 'POST',
@@ -22,7 +24,7 @@ function queryStringify(data) {
     }, '?');
 }
 
-export class HTTPrequest {
+export default class HTTPrequest {
     baseUrl: string;
   
     constructor(baseUrl = '/') {
@@ -30,7 +32,6 @@ export class HTTPrequest {
     }
     
     get = (url, options = {}) => {
-
         return this.request(this.baseUrl + url, {...options, method: METHODS.GET}, options.timeout);
     };
 
@@ -65,12 +66,19 @@ export class HTTPrequest {
                     : url,
             );
 
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
             Object.keys(headers).forEach(key => {
                 xhr.setRequestHeader(key, headers[key]);
             });
 
             xhr.onload = function() {
-                resolve(xhr);
+                if(xhr.status >= 200 && xhr.status < 300){
+                    resolve(xhr.response);
+                }
+                else{
+                    reject(new Error(xhr.response));
+                }
             };
 
             xhr.onabort = reject;

@@ -9,7 +9,6 @@ import './chats.scss';
 class Chats extends Block {
   constructor(props) {
     super('div', props);
-    console.log(props);
   }
 
   render() {

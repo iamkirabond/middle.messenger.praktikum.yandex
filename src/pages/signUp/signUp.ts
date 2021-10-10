@@ -3,9 +3,12 @@ import { SignUpForm } from '../../templates/Authorization/SignUp.tmpl';
 import Block from "../../utils/block";
 import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
-import {validationForm} from "../../utils/validation";
-import './signUp.scss';
+import { validationForm } from "../../utils/validation";
 import router from '../index';
+import AuthAPI from '../../api/auth-api';
+import './signUp.scss';
+
+const signUpInstance = new AuthAPI();
 
 
 class SignUp extends Block{
@@ -29,6 +32,14 @@ class SignUp extends Block{
         }
     }
 
+    collectInputToJSONString(){
+        let inputs = document.querySelectorAll('input');
+        let data = {};
+        inputs.forEach((input) => {
+            data[input.dataset.type] = input.value;
+        });
+        return JSON.stringify(data);
+    }
 
     clickHandler (event: Event){
         if(event.target){
@@ -36,16 +47,19 @@ class SignUp extends Block{
             if(event.target.id === 'signup-btn'){
                 let inputs = document.querySelectorAll('input');
                 inputs.forEach((input) => {
-                    console.log(input.dataset.type, input.value)
+                    console.log(input.dataset.type, input.value);
                     let isValid = validationForm(input.value, input.dataset.type);
                     if (!isValid){
                         input.classList.add('input-error');
                     }
                     else{
                         input.classList.remove('input-error');
-                        router.go('/messenger');
                     }
                 });
+                if (document.querySelectorAll('.input-error').length == 0){
+                    signUpInstance.signup(this.collectInputToJSONString());    
+                    router.go('/messenger');
+                }
             }
             else if(event.target.id === 'signin-btn'){
                 router.go('/');
