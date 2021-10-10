@@ -33,6 +33,10 @@ class SignInPage extends Block{
         }
     }
 
+    componentDidMount(){
+        signInInstance.getUserInfo().then(()=>{router.go('/messenger')})
+    }
+
     collectInput(){
         let inputs = document.querySelectorAll('input');
         let data = {};

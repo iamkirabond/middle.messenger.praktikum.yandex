@@ -59,6 +59,7 @@ export default class HTTPrequest {
             const xhr = new XMLHttpRequest();
             const isGet = method === METHODS.GET;
 
+            xhr.withCredentials = true;
             xhr.open(
                 method,
                 isGet && !!data
@@ -77,7 +78,7 @@ export default class HTTPrequest {
                     resolve(xhr.response);
                 }
                 else{
-                    reject(new Error(xhr.response));
+                    reject(xhr.response);
                 }
             };
 

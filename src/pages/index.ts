@@ -10,7 +10,6 @@ const router = new Router('#page-content');
 
 router
     .use('/', SignInWrapper)
-    .use('/signin', SignInWrapper)
     .use('/signup', SignUpWrapper)
     .use('/profile', ProfileWrapper)
     .use('/messenger', ChatsWrapper)
