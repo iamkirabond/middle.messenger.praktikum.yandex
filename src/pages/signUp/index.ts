@@ -55,7 +55,7 @@ export function SignUpWrapper(){
       text: 'Авторизоваться',
       type: 'submit',
       style: 'signin-btn',
-      link: '/signIn',
+      id: 'signin-btn',
     },
   };
 

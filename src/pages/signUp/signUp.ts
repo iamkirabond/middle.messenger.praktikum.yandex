@@ -5,9 +5,7 @@ import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
 import {validationForm} from "../../utils/validation";
 import './signUp.scss';
-import Router from '../../utils/router';
-
-const router = new Router('#page-content');
+import router from '../index';
 
 
 class SignUp extends Block{

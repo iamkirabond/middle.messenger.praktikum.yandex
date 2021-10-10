@@ -17,4 +17,6 @@ router
     .use('/404', Error404Wrapper)
     .use('/500', Error500Wrapper)
     .start();
+
+export default router;
     
