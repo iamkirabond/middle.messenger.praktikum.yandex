@@ -3,9 +3,12 @@ import { SignInForm } from '../../templates/Authorization/SignIn.tmpl';
 import Block from "../../utils/block";
 import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
-import {validationForm} from "../../utils/validation";
-import './signIn.scss';
+import { validationForm } from "../../utils/validation";
 import router from '../index';
+import UserAuthController from '../../controllers/user-auth';
+import './signIn.scss';
+
+const signInInstance = new UserAuthController();
 
 class SignInPage extends Block{
     constructor(props) {
@@ -14,11 +17,9 @@ class SignInPage extends Block{
             events: {
                 click: event => this.clickHandler(event),
                 focusout: event => this.blurNow(event),
-
             }
         })
     }
-
 
     blurNow(event) {
         if(event.target.tagName === 'INPUT'){
@@ -32,6 +33,14 @@ class SignInPage extends Block{
         }
     }
 
+    collectInput(){
+        let inputs = document.querySelectorAll('input');
+        let data = {};
+        inputs.forEach((input) => {
+            data[input.dataset.type] = input.value;
+        });
+        return data;
+    }
 
     clickHandler (event: Event){
         if(event.target){
@@ -45,10 +54,11 @@ class SignInPage extends Block{
                    }
                    else{
                        input.classList.remove('input-error');
-                       router.go('/messenger');
                    }
                });
-
+                if (document.querySelectorAll('.input-error').length == 0){
+                    signInInstance.login(this.collectInput());
+                }
             }
             else if(event.target.id === 'signup-btn'){
                 router.go('/signup');
@@ -60,7 +70,6 @@ class SignInPage extends Block{
     render() {
         const templateForm = Handlebars.compile(SignInForm);
         const data = this.props;
-        console.log('RERENDER')
         return templateForm({
             title: data.title,
             login: new InputField(data.login).render(),

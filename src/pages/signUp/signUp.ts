@@ -5,11 +5,10 @@ import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
 import { validationForm } from "../../utils/validation";
 import router from '../index';
-import AuthAPI from '../../api/auth-api';
+import UserAuthController from '../../controllers/user-auth';
 import './signUp.scss';
 
-const signUpInstance = new AuthAPI();
-
+const signUpInstance = new UserAuthController;
 
 class SignUp extends Block{
     constructor(props) {
@@ -32,13 +31,13 @@ class SignUp extends Block{
         }
     }
 
-    collectInputToJSONString(){
+    collectInput(){
         let inputs = document.querySelectorAll('input');
         let data = {};
         inputs.forEach((input) => {
             data[input.dataset.type] = input.value;
         });
-        return JSON.stringify(data);
+        return data;
     }
 
     clickHandler (event: Event){
@@ -57,8 +56,7 @@ class SignUp extends Block{
                     }
                 });
                 if (document.querySelectorAll('.input-error').length == 0){
-                    signUpInstance.signup(this.collectInputToJSONString());    
-                    router.go('/messenger');
+                   signUpInstance.signup(this.collectInput());    
                 }
             }
             else if(event.target.id === 'signin-btn'){
