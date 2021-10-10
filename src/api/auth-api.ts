@@ -1,6 +1,6 @@
+import router from '../pages';
 import HTTPrequest from '../utils/HTTPRequest';
-  import { BaseAPI } from './base-api';
-
+import { BaseAPI } from './base-api';
 
 const host = 'https://ya-praktikum.tech';
 const authAPIInstance = new HTTPrequest(`${host}/api/v2/auth`);
@@ -9,8 +9,8 @@ export default class AuthAPI extends BaseAPI {
     signup(data){
         return authAPIInstance.post('/signup', {data})
             .then(response => {
-                let {id} = response;
-                return id;
+                this.getUserInfo();
+                router.go('/messenger');
             })
             .catch(reject => {
                 throw new Error(reject);
@@ -19,17 +19,24 @@ export default class AuthAPI extends BaseAPI {
     signin(data){
         return authAPIInstance.post('/signin', {data})
         .then(response => {
-            console.log(response);
             this.getUserInfo();
+            router.go('/messenger');
         })
         .catch(reject => {
             console.log(reject);
         })
     }
     getUserInfo(){
-        return authAPIInstance.get('/user');
+        return authAPIInstance.get('/user').then(response => JSON.parse(response))
     }
     userExit(){
-        return authAPIInstance.post('/logout', {});
+        return authAPIInstance.post('/logout', {})
+        .then(() => {
+            this.getUserInfo();
+            router.go('/');
+        })
+        .catch(reject => {
+            console.log(reject);
+        });
     }
 }

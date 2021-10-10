@@ -1,20 +1,19 @@
 import AuthAPI from '../api/auth-api';
-import router from '../pages/index';
+import UserAPI from '../api/user-api';
 
-const authInstance = new AuthAPI();
 
 interface LoginFormModel {
-    login: string;
-    password: string;
+  login: string;
+  password: string;
 }
 
-const loginApi = new AuthAPI();
+const authInstance = new AuthAPI();
+const userApi = new UserAPI();
 
 export default class UserAuthController {
   public async login(data: LoginFormModel) {
     try {
         await authInstance.signin(JSON.stringify(data));
-        //router.go('/messenger');
     } 
     catch (error) {
         alert('Wrong login or password!')
@@ -31,7 +30,23 @@ export default class UserAuthController {
   }
   public async getUserInfo() {
     try {
-        await authInstance.getUserInfo();
+       return await authInstance.getUserInfo();
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async getProfileInfo(id:string) {
+    try {
+        await userApi.getUsersInfo(id);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async logout() {
+    try {
+        await authInstance.userExit();
     } 
     catch (error) {
         console.log(JSON.parse(error.response));

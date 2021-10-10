@@ -47,6 +47,7 @@ class SignInPage extends Block{
     }
 
     clickHandler (event: Event){
+        console.log('click', event.target)
         if(event.target){
             event.preventDefault();
             if(event.target.id === 'signin-btn'){
@@ -60,7 +61,7 @@ class SignInPage extends Block{
                        input.classList.remove('input-error');
                    }
                });
-                if (document.querySelectorAll('.input-error').length == 0){
+                if (document.querySelectorAll('.signin-inputs-area .input-error').length == 0){
                     signInInstance.login(this.collectInput());
                 }
             }

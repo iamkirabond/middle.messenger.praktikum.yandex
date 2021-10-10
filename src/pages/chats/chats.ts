@@ -16,12 +16,14 @@ class Chats extends Block {
   }
 
   clickHandler (event: Event){
-    console.log('button')
-    if(event.target && event.target.id === 'profile-btn'){
+    if(event.target){
+      event.preventDefault();
+      if (event.target.id === 'profile-btn'){
         event.preventDefault();
-            router.go('/profile');
+        router.go('/profile');
+      }
     }
-}
+  }
 
   render() {
     const templateForm = Handlebars.compile(ChatsPageTmpl);

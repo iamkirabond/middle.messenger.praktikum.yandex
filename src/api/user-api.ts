@@ -1,11 +1,11 @@
-import {HTTPrequest} from '../utils/HTTPRequest';
-  import { BaseAPI } from './base-api';
+import HTTPrequest from '../utils/HTTPRequest';
+import { BaseAPI } from './base-api';
 
 
 const host = 'https://ya-praktikum.tech';
 const userAPIInstance = new HTTPrequest(`${host}/api/v2/user`);
 
-class userAPI extends BaseAPI {
+export default class userAPI extends BaseAPI {
 
     editprofile(){
         return userAPIInstance.put('/profile', {title: 'string'});
