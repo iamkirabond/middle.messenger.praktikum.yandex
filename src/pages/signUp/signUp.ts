@@ -5,6 +5,9 @@ import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
 import {validationForm} from "../../utils/validation";
 import './signUp.scss';
+import Router from '../../utils/router';
+
+const router = new Router('#page-content');
 
 
 class SignUp extends Block{
@@ -42,8 +45,12 @@ class SignUp extends Block{
                     }
                     else{
                         input.classList.remove('input-error');
+                        router.go('/messenger');
                     }
                 });
+            }
+            else if(event.target.id === 'signin-btn'){
+                router.go('/');
             }
 
         }

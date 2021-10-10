@@ -25,7 +25,7 @@ export function SignInWrapper(){
       text: 'Нет аккаунта?',
       type: 'submit',
       style: 'signup-btn',
-      link: '/signUp',
+      id: 'signup-btn'
     },
   };
 

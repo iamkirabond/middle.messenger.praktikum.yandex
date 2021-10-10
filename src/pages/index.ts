@@ -9,11 +9,11 @@ import { ChatsWrapper } from './chats';
 const router = new Router('#page-content');
 
 router
-    .use('/', SignUpWrapper)
+    .use('/', SignInWrapper)
     .use('/signin', SignInWrapper)
     .use('/signup', SignUpWrapper)
     .use('/profile', ProfileWrapper)
-    .use('/chats', ChatsWrapper)
+    .use('/messenger', ChatsWrapper)
     .use('/404', Error404Wrapper)
     .use('/500', Error500Wrapper)
     .start();

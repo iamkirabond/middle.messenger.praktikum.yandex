@@ -5,7 +5,9 @@ import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
 import {validationForm} from "../../utils/validation";
 import './signIn.scss';
+import Router from '../../utils/router';
 
+const router = new Router('#page-content');
 
 class SignInPage extends Block{
     constructor(props) {
@@ -14,6 +16,7 @@ class SignInPage extends Block{
             events: {
                 click: event => this.clickHandler(event),
                 focusout: event => this.blurNow(event),
+
             }
         })
     }
@@ -36,23 +39,30 @@ class SignInPage extends Block{
         if(event.target){
             event.preventDefault();
             if(event.target.id === 'signin-btn'){
-               let inputs = document.querySelectorAll('input');
-               inputs.forEach((input) => {
+                let inputs = document.querySelectorAll('input');
+                inputs.forEach((input) => {
                    let isValid = validationForm(input.value, input.dataset.type);
                    if (!isValid){
                        input.classList.add('input-error');
                    }
                    else{
                        input.classList.remove('input-error');
+                       router.go('/messenger');
                    }
-               })
+               });
+
             }
+            else if(event.target.id === 'signup-btn'){
+                router.go('/signup');
+            }
+            
         }
     }
 
     render() {
         const templateForm = Handlebars.compile(SignInForm);
         const data = this.props;
+        console.log('RERENDER')
         return templateForm({
             title: data.title,
             login: new InputField(data.login).render(),
