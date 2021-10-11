@@ -8,6 +8,7 @@ export function ChatsWrapper(){
       style: 'profile-btn',
       id: 'profile-btn',
       type: 'submit',
+      chatRooms: {},
     }
   };
 

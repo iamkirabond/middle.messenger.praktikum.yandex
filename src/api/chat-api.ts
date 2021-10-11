@@ -1,17 +1,17 @@
-import {HTTPrequest} from '../utils/HTTPRequest';
+import HTTPrequest from '../utils/HTTPRequest';
   import { BaseAPI } from './base-api';
 
 
 const host = 'https://ya-praktikum.tech';
 const chatAPIInstance = new HTTPrequest(`${host}/api/v2/chats`);
 
-class ChatAPI extends BaseAPI {
+export default class ChatAPI extends BaseAPI {
 
     getChats(){
         return chatAPIInstance.get('/', {title: 'string'});
     }
-    createChat(){
-        return chatAPIInstance.post('/', {title: 'string'});
+    createChat(title){
+        return chatAPIInstance.post('/', {data: JSON.stringify({title})});
     }
     deleteChat(){
         return chatAPIInstance.delete('/', {title: 'string'});

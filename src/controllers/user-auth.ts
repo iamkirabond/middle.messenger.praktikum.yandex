@@ -1,5 +1,6 @@
 import AuthAPI from '../api/auth-api';
 import UserAPI from '../api/user-api';
+import ChatAPI from '../api/chat-api';
 
 
 interface LoginFormModel {
@@ -8,7 +9,8 @@ interface LoginFormModel {
 }
 
 const authInstance = new AuthAPI();
-const userApi = new UserAPI();
+const userInstance = new UserAPI();
+const chatInstance = new ChatAPI()
 
 export default class UserAuthController {
   public async login(data: LoginFormModel) {
@@ -38,7 +40,7 @@ export default class UserAuthController {
   }
   public async getProfileInfo(id:string) {
     try {
-        await userApi.getUsersInfo(id);
+        await userInstance.getUsersInfo(id);
     } 
     catch (error) {
         console.log(JSON.parse(error.response));
@@ -47,6 +49,46 @@ export default class UserAuthController {
   public async logout() {
     try {
         await authInstance.userExit();
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async updateInfo(data) {
+    try {
+        await userInstance.editprofile(JSON.stringify(data));
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async updateAvatar(data) {
+    try {
+        await userInstance.updateAvatar(data);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async addChat(data) {
+    try {
+        await userInstance.updateAvatar(data);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async createChat(chatName) {
+    try {
+        await chatInstance.createChat(chatName);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async getChats() {
+    try {
+        return await chatInstance.getChats();
     } 
     catch (error) {
         console.log(JSON.parse(error.response));

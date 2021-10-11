@@ -47,7 +47,6 @@ class SignInPage extends Block{
     }
 
     clickHandler (event: Event){
-        console.log('click', event.target)
         if(event.target){
             event.preventDefault();
             if(event.target.id === 'signin-btn'){

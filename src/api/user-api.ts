@@ -7,11 +7,11 @@ const userAPIInstance = new HTTPrequest(`${host}/api/v2/user`);
 
 export default class userAPI extends BaseAPI {
 
-    editprofile(){
-        return userAPIInstance.put('/profile', {title: 'string'});
+    editprofile(data){
+        return userAPIInstance.put('/profile', {data});
     }
-    updateAvetar(){
-        return userAPIInstance.put('/avatar', {title: 'string'});
+    updateAvatar(data){
+        return userAPIInstance.put('/profile/avatar', data);
     }
     userSearch(){
         return userAPIInstance.post('/search', {title: 'string'});

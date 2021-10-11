@@ -18,6 +18,16 @@ class Profile extends Block {
     });
   }
 
+  collectInput(){
+    let inputs = document.querySelectorAll('.profile-input');
+    console.log(inputs)
+    let data = {};
+    inputs.forEach((input) => {
+        data[input.dataset.type] = input.value;
+    });
+    return {...data, display_name: data.first_name};
+  }
+  
   clickHandler(event:Event){
     if (event.target){
       if(event.target.id === 'profile-back-btn'){
@@ -25,8 +35,26 @@ class Profile extends Block {
         router.go('/');
       }
       else if(event.target.id === 'logout'){
+        event.preventDefault();
         profileDataRequester.logout();
       }
+      else if(event.target.id === 'updateInfo'){
+        event.preventDefault();
+        let data = this.collectInput();
+        profileDataRequester.updateInfo(data);
+      }
+      else if(event.target.id === 'uploadAvatar' && document.getElementById('avatar').files!.length){
+        event.preventDefault();
+        const userAvatarInput = document.getElementById('userAvatarInput');
+        const userAvatarFormData = new FormData();
+        userAvatarFormData.append('avatar', userAvatarInput);
+        profileDataRequester.updateAvatar({
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+          body: userAvatarFormData,
+        })
+      }      
     }
   }
 
@@ -40,6 +68,7 @@ class Profile extends Block {
         this.props.lastname.data = data.second_name;
         this.props.nickname.data = data.login;
         this.props.phone.data = data.phone;
+        this.props.avatar = data.avatar;
         this.setProps(this.props);
       })
       .catch(()=> router.go('/'));
@@ -56,6 +85,7 @@ class Profile extends Block {
       lastname: new ProfileField(data.lastname).render(),
       nickname: new ProfileField(data.nickname).render(),
       phone: new ProfileField(data.phone).render(),
+      avatar: this.props.avatar,
     });
   }
 }
