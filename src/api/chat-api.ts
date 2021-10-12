@@ -17,7 +17,7 @@ export default class ChatAPI extends BaseAPI {
         return chatAPIInstance.delete('/', {title: 'string'});
     }
     getChatUsers(id){
-        return chatAPIInstance.get(`/:${id}/users`, {title: 'string'});
+        return chatAPIInstance.get(`/${id}/users`);
     }
     getNewMsg(id){
         return chatAPIInstance.get(`/new/:${id}`, {title: 'string'});
@@ -25,11 +25,12 @@ export default class ChatAPI extends BaseAPI {
     putAvatar(){
         return chatAPIInstance.put('/avatar', {title: 'string'});
     }
-    deleteUser(){
-        return chatAPIInstance.put('/avatar', {title: 'string'});
+    deleteUser(users, chatId){
+        return chatAPIInstance.delete('/users', {data: JSON.stringify({users,chatId})});
     }
-    addUser(){
-        return chatAPIInstance.put('/users', {title: 'string'});
+    addUser(users, chatId){
+        console.log({data: JSON.stringify({users,chatId})})
+        return chatAPIInstance.put('/users', {data: JSON.stringify({users,chatId})});
     }
     create() {
         return chatAPIInstance.post('/', {title: 'string'});

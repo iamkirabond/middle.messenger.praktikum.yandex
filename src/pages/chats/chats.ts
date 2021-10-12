@@ -6,9 +6,12 @@ import Button from '../../components/button/Button';
 import router from '../index';
 import UserAuthController from '../../controllers/user-auth';
 import './chats.scss';
-import ChatItem from '../../components/chat/Chat';
+import ChatItem from '../../components/chat/ChatItem';
+import ChatCurrent from '../../components/chat/ChatCurrent';
+import ChatUser from '../../components/chat/ChatUser';
 
 const chatDataRequester = new UserAuthController();
+const templateForm = Handlebars.compile(ChatsPageTmpl);
 
 
 class Chats extends Block {
@@ -25,8 +28,13 @@ class Chats extends Block {
     modal.classList.toggle('d-flex');
   }
 
+  openSettings(){
+    let modal = document.querySelectorAll('.settings-modal')[0];
+    modal.classList.toggle('d-flex');
+  }
+
   clickHandler (event: Event){
-   // console.log(event.target.closest('.chats-item').dataset.id)
+
     if(event.target){
       event.preventDefault();
       if (event.target.id === 'profile-btn'){
@@ -37,6 +45,32 @@ class Chats extends Block {
         event.preventDefault();
         this.newChatInit(); 
       }
+      else if (event.target.id === 'openSettings'){
+        event.preventDefault();
+        this.openSettings(); 
+      }
+      else if (event.target.id === 'addUserByLogin'){
+        event.preventDefault();
+        let login = document.querySelectorAll('.settings-modal input')[0].value;
+        if (login.length > 0){
+          chatDataRequester.userSearch(login)
+          .then(response =>{
+            if(response){
+              let {id} = JSON.parse(response)[0];
+              chatDataRequester.addUserToChat(id, this.props.currentChatRoom.roomData.id)
+              .then(response => {
+                chatDataRequester.getChatUsers(this.props.currentChatRoom.roomData.id)
+                .then(response => {
+                  let usersInChat = JSON.parse(response);
+
+                  this.props.currentChatRoom = {...this.props.currentChatRoom, usersInChat};
+                })
+                .catch(data => console.log(JSON.parse(data.response)));
+              })
+            }
+          })
+        }
+      }
       else if (event.target.id === 'newChatSubmit'){
         event.preventDefault();
         let chatName = document.querySelectorAll('.new-chat-name input')[0].value;
@@ -46,8 +80,35 @@ class Chats extends Block {
         })
         .catch(data => console.log(JSON.parse(data.response)));
       }
+      else if (event.target.id === 'removeUserFromChat'){
+        event.preventDefault();
+        chatDataRequester.deleteUser(event.target.dataset.id, this.props.currentChatRoom.roomData.id)
+        .then(response => {
+          chatDataRequester.getChatUsers(this.props.currentChatRoom.roomData.id)
+          .then(response => {
+            let usersInChat = JSON.parse(response);
+
+            this.props.currentChatRoom = {...this.props.currentChatRoom, usersInChat};
+          })
+          .catch(data => console.log(JSON.parse(data.response)));
+        })
+      }
+      else if (event.target.id === 'deleteChat'){
+        event.preventDefault();
+      }
       else if(event.target.closest('.chats-item').dataset.id){
-        console.log(event.target.closest('.chats-item').dataset.id)
+        let clickedId = event.target.closest('.chats-item').dataset.id;
+        let currentRoom = this.props.chatRooms.filter(item => item.id == clickedId);
+        let roomData = currentRoom[0];
+        let content = new ChatCurrent(roomData).render();
+
+        chatDataRequester.getChatUsers(roomData.id)
+        .then(response => {
+          let usersInChat = JSON.parse(response);
+
+          this.props.currentChatRoom = {roomData, content, usersInChat};
+        })
+        .catch(data => console.log(JSON.parse(data.response)));
       }
     }
   }
@@ -65,17 +126,22 @@ class Chats extends Block {
 }
 
   render() {
-    const templateForm = Handlebars.compile(ChatsPageTmpl);
     const data = this.props;
 
-    let chatRooms =  this.props.chatRooms ? this.props.chatRooms.map((item) => {
+    let chatRooms = data.chatRooms ? data.chatRooms.map((item) => {
       return new ChatItem(item).render()
     }) : null;
-      
+
+    let userList = data.currentChatRoom ? data.currentChatRoom.usersInChat.map((user) => {
+      return new ChatUser(user).render();
+    }) : null;
+
     return templateForm({
       ...data,
-      chatRooms: this.props.chatRooms ? chatRooms.join('\n') : null,
+      chatRooms: data.chatRooms ? chatRooms.join('\n') : null,
+      currentChatRoom: data.currentChatRoom ? data.currentChatRoom.content : null,
       profileBtn: new Button(data.profileBtn).render(),
+      users: data.currentChatRoom ? userList.join('\n') : null,
     });
   }
 }

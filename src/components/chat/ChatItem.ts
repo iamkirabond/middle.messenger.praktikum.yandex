@@ -7,12 +7,7 @@ const templateChatItem = Handlebars.compile(ChatsItemTmpl);
 class ChatItem extends Block{
 
     constructor(props) {
-        console.log(props)
-        super('div', {...props,
-            events: {
-                click: event => this.clickHandler(event),
-            }
-        });
+        super('div', props);
     }
 
     render(){

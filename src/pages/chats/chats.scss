@@ -96,7 +96,12 @@
                 &:hover{
                     cursor: pointer;
                 }
+                .delete-chat-btn{
 
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
                 ::before{
                     content: '';
                     position: absolute;
@@ -168,9 +173,154 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
         text-align: center;
+        padding: 5px;
+
+        .users-in-chat{
+            display: flex;
+            flex-direction: row;
+            align-items:flex-start;
+            margin-top: 20px;
+            width: 400px; 
+            
+            position: relative;
+            ::after{
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background: #EAEAEA;
+                bottom: -10px;
+                left: 0;
+            }
+
+            .chat-user{
+                margin-left: 15px;
+                background-color: $nonactive-input;
+                padding: 5px 7px;
+                border-radius: 5px;
+                color: #6a6969;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                button{
+                    margin-left: 10px;
+                    font-size: 15px;
+                    color: $accent-color;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+
+        }
+        .chats-conversation-top{
+            width: 100%;
+            position: relative;
+
+            .settings-modal{
+                position: absolute;
+                bottom: -40px;
+                right: 0;
+                width: 300px;
+                justify-content: space-between;
+                display: none;
+                z-index: 20;
+
+                input{
+                    width: 230px;
+                }
+            }
+
+            .top-chats-item{
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                align-items: center;
+                
+                &:hover{
+                    cursor: pointer;
+                }
+                
+
+                .chat-settings{
+                    font-size: 20px;
+                    margin-left: auto;
+                    margin-right: 30px;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                ::after{
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 1px;
+                    background: #EAEAEA;
+                    bottom: -10px;
+                    left: 0;
+                }
+
+                .image-placeholder{
+                    width: 47px;
+                    height: 47px;
+                    border-radius: 50%;
+                    background-color: #efefef;
+                }
+
+                .chat-info{
+                    width: 150px;
+                    height: 100%;
+                    margin: 0 15px 0 10px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .chat-info-name{
+                        font-weight: 600;
+                        font-size: 19px;
+                        line-height: 13px;
+                        color: #1E1E1E;
+                    }
+                    .chat-info-last-msg{
+                        font-size: 12px;
+                        line-height: 15px;
+                        color: #999999;
+                    }
+                }
+
+                .chat-notifications{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .chat-last-date{
+                        font-weight: 500;
+                        font-size: 9px;
+                        line-height: 13px;
+                        color: #999999;
+                    }
+
+                    .chat-new-msg{
+                        border-radius: 50%;
+                        background-color: #3369F3;
+                        width: 20px;
+                        height: 20px;
+                        color: $white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: 500;
+                        font-size: 11px;
+                        line-height: 12px;
+                    }
+                }
+            }
+        }
+
         .no-chat-selected{
             font-size: 12px;
             line-height: 12px;

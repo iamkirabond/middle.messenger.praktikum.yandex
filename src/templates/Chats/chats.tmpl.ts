@@ -14,6 +14,9 @@ export const ChatsPageTmpl = `<div class="chats-page">
             </div>
         </div>
         <div class="chats-conversation">
-            <p class="no-chat-selected">Выберите чат чтобы отправить сообщение</p>
+            <div class="chats-conversation-top">
+                {{{currentChatRoom}}}
+            </div>
+            <div class="users-in-chat">{{{users}}}</div>
         </div>
     </div>`;

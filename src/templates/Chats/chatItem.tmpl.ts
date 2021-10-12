@@ -9,6 +9,7 @@ export const ChatsItemTmpl =
     </div>`;
 
 /*
+<button class="delete-chat-btn" id="deleteChat">x</button>
 
 <p class="chat-info-last-msg">Изображение</p>
 

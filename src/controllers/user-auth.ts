@@ -94,4 +94,36 @@ export default class UserAuthController {
         console.log(JSON.parse(error.response));
     }
   }
+  public async userSearch(nickname) {
+    try {
+        return await userInstance.userSearch(nickname);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async addUserToChat(id, chatId) {
+    try {
+        return await chatInstance.addUser([id], chatId);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async getChatUsers(chatId) {
+    try {
+        return await chatInstance.getChatUsers(chatId);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async deleteUser(id, chatId) {
+    try {
+        return await chatInstance.deleteUser([id], chatId);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
 } 

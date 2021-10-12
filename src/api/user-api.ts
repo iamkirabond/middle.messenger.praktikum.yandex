@@ -13,8 +13,9 @@ export default class userAPI extends BaseAPI {
     updateAvatar(data){
         return userAPIInstance.put('/profile/avatar', data);
     }
-    userSearch(){
-        return userAPIInstance.post('/search', {title: 'string'});
+    userSearch(login){
+        console.log(login, {data: JSON.stringify({login})})
+        return userAPIInstance.post('/search', {data: JSON.stringify({login})});
     }
     getUsersInfo(id){
         return userAPIInstance.get(`/users/:${id}`, {title: 'string'});
