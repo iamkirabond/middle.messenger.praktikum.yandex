@@ -5,6 +5,8 @@ import ProfileField from '../../components/profileField/profileField';
 import router from '../index';
 import UserAuthController from '../../controllers/user-auth';
 import './profile.scss';
+import toggleModal from '../../utils/toggleItem';
+import { validationForm } from '../../utils/validation';
 
 const templateForm = Handlebars.compile(ProfileForm);
 const profileDataRequester = new UserAuthController();
@@ -20,7 +22,6 @@ class Profile extends Block {
 
   collectInput(){
     let inputs = document.querySelectorAll('.profile-input');
-    console.log(inputs)
     let data = {};
     inputs.forEach((input) => {
         data[input.dataset.type] = input.value;
@@ -38,6 +39,34 @@ class Profile extends Block {
         event.preventDefault();
         profileDataRequester.logout();
       }
+      else if(event.target.id === 'updatePassword' || event.target.id === 'canselUpdatePassword' ){
+        event.preventDefault();
+        toggleModal('.update-password-wrapper')
+        
+      }
+      else if(event.target.id === 'submitUpdatePassword'){
+          let inputs = document.querySelectorAll('.update-password input');
+          inputs.forEach((input) => {
+              console.log(input.dataset.type, input.value);
+              let isValid = validationForm(input.value, input.dataset.type);
+              if (!isValid){
+                  input.classList.add('input-error');
+              }
+              else{
+                  input.classList.remove('input-error');
+              }
+          });
+          if (document.querySelectorAll('.input-error').length == 0){
+            let inputs = document.querySelectorAll('.update-password input');
+            if (inputs[1].value == inputs[2].value){
+              profileDataRequester.changePassword(inputs[0].value, inputs[1].value)
+              .then(response => {
+                toggleModal('.update-password-wrapper')
+              })
+              .catch(data => console.log(JSON.parse(data.response)));              
+             }
+          }
+        }
       else if(event.target.id === 'updateInfo'){
         event.preventDefault();
         let data = this.collectInput();
@@ -86,6 +115,9 @@ class Profile extends Block {
       nickname: new ProfileField(data.nickname).render(),
       phone: new ProfileField(data.phone).render(),
       avatar: this.props.avatar,
+      oldPwd: new ProfileField(data.oldPwd).render(),
+      newPwd: new ProfileField(data.newPwd).render(),
+      duplicalePwd: new ProfileField(data.duplicatePwd).render(),
     });
   }
 }

@@ -20,4 +20,8 @@ export default class userAPI extends BaseAPI {
     getUsersInfo(id){
         return userAPIInstance.get(`/users/:${id}`, {title: 'string'});
     }
+    updatePassword(oldPassword, newPassword){
+        console.log({data: JSON.stringify({oldPassword, newPassword})})
+        return userAPIInstance.put(`/password`, {data: JSON.stringify({oldPassword, newPassword})});
+    }
 }

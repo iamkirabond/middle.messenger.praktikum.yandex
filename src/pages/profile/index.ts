@@ -33,6 +33,21 @@ export function ProfileWrapper(){
       dataType: 'phone'
     },
     image: 'static/images/basic-img.png',
+    oldPwd: {
+      name: 'Введите старый пароль',
+      data: '',
+      dataType: 'password'
+    },
+    newPwd: {
+      name: 'Введите новый пароль',
+      data: '',
+      dataType: 'password'
+    },
+    duplicatePwd: {
+      name: 'Введите новый пароль',
+      data: '',
+      dataType: 'password'
+    }
   };
 
   return new Profile(user);
