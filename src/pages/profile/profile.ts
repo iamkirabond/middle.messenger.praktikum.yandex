@@ -33,7 +33,7 @@ class Profile extends Block {
     if (event.target){
       if(event.target.id === 'profile-back-btn'){
         event.preventDefault();
-        router.go('/');
+        router.go('/messenger');
       }
       else if(event.target.id === 'logout'){
         event.preventDefault();

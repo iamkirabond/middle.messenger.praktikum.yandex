@@ -44,7 +44,7 @@ class SignUp extends Block{
         if(event.target){
             event.preventDefault();
             if(event.target.id === 'signup-btn'){
-                let inputs = document.querySelectorAll('input');
+                let inputs = document.querySelectorAll('.input-block input');
                 inputs.forEach((input) => {
                     console.log(input.dataset.type, input.value);
                     let isValid = validationForm(input.value, input.dataset.type);
@@ -56,7 +56,13 @@ class SignUp extends Block{
                     }
                 });
                 if (document.querySelectorAll('.input-error').length == 0){
-                   signUpInstance.signup(this.collectInput());    
+                    let inputs = document.querySelectorAll('.input-block input');
+                    if(inputs[inputs.length-1].value === inputs[inputs.length-2].value){
+                        signUpInstance.signup(this.collectInput());    
+                    }
+                    else{
+                        alert('Passwords not match!');
+                    }
                 }
             }
             else if(event.target.id === 'signin-btn'){

@@ -105,8 +105,14 @@ class Chats extends Block {
         chatDataRequester.getChatUsers(roomData.id)
         .then(response => {
           let usersInChat = JSON.parse(response);
-
-          this.props.currentChatRoom = {roomData, content, usersInChat};
+          
+         chatDataRequester.getToken(roomData.id)
+         .then((response)=>{
+           let {token} = JSON.parse(response)
+           roomData.token = token;
+           this.props.currentChatRoom = {roomData, content, usersInChat};          
+         })
+          
         })
         .catch(data => console.log(JSON.parse(data.response)));
       }

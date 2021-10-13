@@ -127,9 +127,16 @@ export default class UserAuthController {
     }
   }
   public async changePassword(oldPwd, newPwd) {
-    console.log(oldPwd, newPwd)
     try {
         return await userInstance.updatePassword(oldPwd, newPwd);
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+  public async getToken(id) {
+    try {
+        return await chatInstance.getToken(id);
     } 
     catch (error) {
         console.log(JSON.parse(error.response));
