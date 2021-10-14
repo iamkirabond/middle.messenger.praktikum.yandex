@@ -1,4 +1,4 @@
-https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/2
+https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/4
 
 ## Описание
 
