@@ -29,7 +29,7 @@ export default class AuthAPI extends BaseAPI {
   }
 
   getUserInfo() {
-    return authAPIInstance.get('/user').then((response) => JSON.parse(response));
+    return authAPIInstance.get('/user').then((response:string) => JSON.parse(response));
   }
 
   userExit() {

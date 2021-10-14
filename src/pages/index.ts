@@ -1,10 +1,10 @@
-import Router from '../utils/router';
-import { Error404Wrapper } from './404';
-import { Error500Wrapper } from './500';
-import { SignInWrapper } from './signIn';
-import { SignUpWrapper } from './signUp';
-import { ProfileWrapper } from './profile';
-import { ChatsWrapper } from './chats';
+import Router from '../utils/router/router';
+import Error404Wrapper from './404/index';
+import Error500Wrapper from './500/index';
+import SignInWrapper from './signIn/index';
+import SignUpWrapper from './signUp/index';
+import ProfileWrapper from './profile/index';
+import ChatsWrapper from './chats/index';
 
 const router = new Router('#page-content');
 

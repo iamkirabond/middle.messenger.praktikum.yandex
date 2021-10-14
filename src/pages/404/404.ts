@@ -1,5 +1,6 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
-import Block from '../../utils/block';
+import Block from '../../utils/block/block';
 import { ErrorTmpl } from '../../templates/Error/Error.tmpl';
 import './404.scss';
 

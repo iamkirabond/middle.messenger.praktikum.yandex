@@ -1,5 +1,6 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
-import Block from '../../utils/block';
+import Block from '../../utils/block/block';
 import {ProfileFieldTmpl} from "../../templates/Profile/profileField.tmpl";
 
 const templateBtn = Handlebars.compile(ProfileFieldTmpl);

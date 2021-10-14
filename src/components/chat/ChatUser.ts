@@ -1,6 +1,7 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
 import { ChatsUserTmpl } from '../../templates/Chats/chatUser.tmpl';
-import Block from '../../utils/block';
+import Block from '../../utils/block/block';
 
 const templateChatUser = Handlebars.compile(ChatsUserTmpl);
 

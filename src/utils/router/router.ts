@@ -5,6 +5,7 @@ class Router {
 
     static __instance: Router;
     routes: Route[];
+    //@ts-ignore
     history: History;
     _currentRoute: null | Route;
     _rootQuery: string;
@@ -16,6 +17,7 @@ class Router {
         }
 
         this.routes = [];
+        //@ts-ignore
         this.history = window.history;
         this._currentRoute = null;
         this._rootQuery = rootQuery;
@@ -32,10 +34,13 @@ class Router {
     }
 
     start() {
+        //@ts-ignore
         window.onpopstate = (event => {
+            //@ts-ignore
             this._onRoute(event.currentTarget.location.pathname);
         }).bind(this);
 
+        //@ts-ignore
         this._onRoute(window.location.pathname);
     }
 

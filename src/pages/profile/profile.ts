@@ -1,5 +1,6 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
-import Block from '../../utils/block';
+import Block from '../../utils/block/block';
 import { ProfileForm } from '../../templates/Profile/Profile.tmpl';
 import ProfileField from '../../components/profileField/profileField';
 import router from '../index';

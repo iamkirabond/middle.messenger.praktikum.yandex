@@ -1,6 +1,7 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
 import { ChatsPageTmpl } from '../../templates/Chats/chats.tmpl';
-import Block from '../../utils/block';
+import Block from '../../utils/block/block';
 import InputField from '../../components/inputField/InputField';
 import Button from '../../components/button/Button';
 import router from '../index';

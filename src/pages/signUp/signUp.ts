@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { SignUpForm } from '../../templates/Authorization/SignUp.tmpl';
-import Block from "../../utils/block";
+import Block from "../../utils/block/block";
 import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
 import { validationForm } from "../../utils/validation";

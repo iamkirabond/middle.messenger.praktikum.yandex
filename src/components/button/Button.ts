@@ -1,6 +1,7 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
 import { buttonTmpl } from "../../templates/button/button.tmpl";
-import Block from '../../utils/block'
+import Block from '../../utils/block/block'
 
 interface ButtonProps {
     text: string;
