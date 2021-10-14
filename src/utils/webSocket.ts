@@ -6,7 +6,7 @@ export default class Socket{
         
 
         this.socket.addEventListener('open', this.isOpen.bind(this));
-        this.socket.addEventListener('close', this.toClose.bind(this));
+        this.socket.addEventListener('close', this.isClosed.bind(this));
         this.socket.addEventListener('message', this.getMessage.bind(this));
         this.socket.addEventListener('error', this.getError.bind(this));
     }
@@ -20,7 +20,7 @@ export default class Socket{
         }));   
     }
     
-    toClose(event) {
+    isClosed(event) {
         if (event.wasClean) {
             console.log('Соединение закрыто чисто');
         } else {
