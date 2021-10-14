@@ -18,5 +18,10 @@ export const ChatsPageTmpl = `<div class="chats-page">
                 {{{currentChatRoom}}}
             </div>
             <div class="users-in-chat">{{{users}}}</div>
+            <div class="chat-history">{{{history}}}</div>
+            <div class="chat-message">
+                <textarea contenteditable="true" id="sendMessageInput" class="chat-message-field"></textarea>
+                <button class="chat-send-btn" id="sendMessageSubmit">&#8594;</button>
+            </div>
         </div>
     </div>`;

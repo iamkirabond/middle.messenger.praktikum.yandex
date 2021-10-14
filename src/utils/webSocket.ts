@@ -13,11 +13,6 @@ export default class Socket{
     
     isOpen() {
         console.log('Соединение установлено');
-
-        this.socket.send(JSON.stringify({
-        content: 'Моё первое сообщение миру!',
-        type: 'message',
-        }));   
     }
     
     isClosed(event) {
@@ -37,5 +32,9 @@ export default class Socket{
     getError(event) {
         console.log('Ошибка', event.message);
    }
-      
+
+    sendMessage(message){
+        console.log('отправляем', message);
+        this.socket.send(JSON.stringify(message))
+    }
 }

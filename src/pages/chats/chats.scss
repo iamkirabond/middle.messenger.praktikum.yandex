@@ -177,6 +177,37 @@
         text-align: center;
         padding: 5px;
 
+        .chat-history{
+            max-height: 100vh;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: #999999;
+            
+        }
+        .chat-message{
+            width: 100%; 
+            display: flex;
+            margin-bottom: 10px;
+
+            .chat-message-field{
+                width: 100%;
+                border-color: #999999;
+                border-radius: 5px;
+            }
+            .chat-send-btn{
+                width: 40px;
+                background-color: $accent-color;
+                color: $white;
+                border-radius: 5px;
+                display: block;
+                margin-left: 10px;
+            }
+        }
+
         .users-in-chat{
             display: flex;
             flex-direction: row;

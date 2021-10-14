@@ -142,4 +142,13 @@ export default class UserAuthController {
         console.log(JSON.parse(error.response));
     }
   }
+  public async getPreviosChat(id) {
+    try {
+        return ;//get chat history
+    } 
+    catch (error) {
+        console.log(JSON.parse(error.response));
+    }
+  }
+
 } 

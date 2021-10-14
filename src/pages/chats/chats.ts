@@ -9,9 +9,11 @@ import './chats.scss';
 import ChatItem from '../../components/chat/ChatItem';
 import ChatCurrent from '../../components/chat/ChatCurrent';
 import ChatUser from '../../components/chat/ChatUser';
+import Socket from '../../utils/webSocket';
 
 const chatDataRequester = new UserAuthController();
 const templateForm = Handlebars.compile(ChatsPageTmpl);
+let socket = null;
 
 
 class Chats extends Block {
@@ -93,8 +95,11 @@ class Chats extends Block {
           .catch(data => console.log(JSON.parse(data.response)));
         })
       }
-      else if (event.target.id === 'deleteChat'){
+      else if (event.target.id === 'sendMessageSubmit'){
         event.preventDefault();
+
+        if(this.props.currentChatRoom)
+          this.sendText();
       }
       else if(event.target.closest('.chats-item').dataset.id){
         let clickedId = event.target.closest('.chats-item').dataset.id;
@@ -108,15 +113,30 @@ class Chats extends Block {
           
          chatDataRequester.getToken(roomData.id)
          .then((response)=>{
-           let {token} = JSON.parse(response)
+           let {token} = JSON.parse(response);
+
            roomData.token = token;
-           this.props.currentChatRoom = {roomData, content, usersInChat};          
-         })
-          
+           this.props.currentChatRoom = {roomData, content, usersInChat};     
+
+           chatDataRequester.getUserInfo()
+           .then(response => {
+            let props = this.props.currentChatRoom;
+            socket = new Socket(response.id, props.roomData.id, props.roomData.token);
+           })
+         }) 
         })
         .catch(data => console.log(JSON.parse(data.response)));
       }
     }
+  }
+
+  sendText(){
+    let text = document.getElementById('sendMessageInput').value;
+
+    socket.sendMessage({
+      content: text,
+      type: 'message',
+    })
   }
   
   requestChats(){
@@ -148,6 +168,7 @@ class Chats extends Block {
       currentChatRoom: data.currentChatRoom ? data.currentChatRoom.content : null,
       profileBtn: new Button(data.profileBtn).render(),
       users: data.currentChatRoom ? userList.join('\n') : null,
+      history: 'Тут будет ваша история',
     });
   }
 }
