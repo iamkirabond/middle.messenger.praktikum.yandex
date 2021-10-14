@@ -5,17 +5,25 @@
   "scripts": {
     "start": "parcel index.html -p 3000",
     "build": "parcel build ./src/pages/*.html",
-    "lint": "npx eslint . --fix --ext .ts && npx stylelint --fix **/*.scss"
+    "lint": "npx eslint . --fix --ext .ts && npx stylelint --fix **/*.scss",
+    "test": "./node_modules/.bin/mocha",
+    "compile": "babel src -d lib --extensions '.ts,.tsx'",
+    "check-types": "tsc"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
     "@typescript-eslint/parser": "^4.30.0",
+    "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
+    "mocha": "^9.1.2",
     "node-sass": "^6.0.1",
     "stylelint": "^13.13.1",
     "typescript": "^4.4.2"

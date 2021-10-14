@@ -1,53 +1,53 @@
 import Profile from './profile';
 
-export function ProfileWrapper(){
+export default function ProfileWrapper() {
   const user = {
     name: {
       name: 'Имя',
       data: 'Иван',
-      dataType: 'first_name'
+      dataType: 'first_name',
     },
     lastname: {
       name: 'Фамилия',
       data: 'Иван',
-      dataType: 'second_name'
+      dataType: 'second_name',
     },
     nickname: {
       name: 'Имя в чате',
       data: 'Иван',
-      dataType: 'login'
+      dataType: 'login',
     },
     mail: {
       name: 'Почта',
       data: 'pochta@yandex.ru',
-      dataType: 'email'
+      dataType: 'email',
     },
     login: {
       name: 'Логин',
       data: 'ivanivanov',
-      dataType: 'login'
+      dataType: 'login',
     },
     phone: {
       name: 'Телефон',
       data: '+79099673030',
-      dataType: 'phone'
+      dataType: 'phone',
     },
     image: 'static/images/basic-img.png',
     oldPwd: {
       name: 'Введите старый пароль',
       data: '',
-      dataType: 'password'
+      dataType: 'password',
     },
     newPwd: {
       name: 'Введите новый пароль',
       data: '',
-      dataType: 'password'
+      dataType: 'password',
     },
     duplicatePwd: {
       name: 'Введите новый пароль',
       data: '',
-      dataType: 'password'
-    }
+      dataType: 'password',
+    },
   };
 
   return new Profile(user);

@@ -1,4 +1,4 @@
-export default function  toggleModal(selector){
-    let modal = document.querySelectorAll(selector)[0];
-    modal.classList.toggle('d-flex');
+export default function toggleModal(selector) {
+  const modal = document.querySelectorAll(selector)[0];
+  modal.classList.toggle('d-flex');
 }

@@ -1,6 +1,6 @@
 import SignInPage from './signIn';
 
-export function SignInWrapper(){
+export default function SignInWrapper() {
   const data = {
     title: 'Вход',
     login: {
@@ -25,10 +25,9 @@ export function SignInWrapper(){
       text: 'Нет аккаунта?',
       type: 'submit',
       style: 'signup-btn',
-      id: 'signup-btn'
+      id: 'signup-btn',
     },
   };
 
   return new SignInPage(data);
-
 }

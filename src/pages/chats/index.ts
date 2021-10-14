@@ -1,15 +1,15 @@
 import Chats from './chats';
 
-export function ChatsWrapper(){
+export default function ChatsWrapper() {
   const data = {
     title: 'Вход',
-    profileBtn : {
+    profileBtn: {
       text: 'Профиль',
       style: 'profile-btn',
       id: 'profile-btn',
       type: 'submit',
       chatRooms: {},
-    }
+    },
   };
 
   return new Chats(data);

@@ -1,6 +1,6 @@
 import SignUpPage from './signUp';
 
-export function SignUpWrapper(){
+export default function SignUpWrapper() {
   const data = {
     title: 'Регистрация',
     login: {
@@ -60,5 +60,4 @@ export function SignUpWrapper(){
   };
 
   return new SignUpPage(data);
-
 }
