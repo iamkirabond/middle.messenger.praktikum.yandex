@@ -45,6 +45,4 @@ https://wizardly-poitras-9dc7b7.netlify.app
 
 ## Страницы 
 
-https://wizardly-poitras-9dc7b7.netlify.app/500.html
-https://wizardly-poitras-9dc7b7.netlify.app/404.html
-https://wizardly-poitras-9dc7b7.netlify.app/profile.html
+https://wizardly-poitras-9dc7b7.netlify.app/
