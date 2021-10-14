@@ -4,6 +4,15 @@ https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/2
 
 Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
 
+Спринт 3
+
+- Доработана страница чатов
+- Подключено к API
+- Добавлены попапы
+- Можно менять инфу о пользователе
+- Логин, логуат, решистрация
+- Добавлены WebSockets и отправка.прием сообщений
+
 Спринт 2
 
 - Перевела на TS
@@ -12,6 +21,7 @@ Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
 - Класс запросов
 - Линтер
 - Добавилась верстка страницы чатов
+- Добавлены тесты (не все)
 
 Спринт 1
 
@@ -26,6 +36,7 @@ Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
 
 - `npm install` — установка
 - `npm run start` — сборка и запуск dev-сервера
+- `npm test` - тестирование проекта
 
 
 ## Netlify
