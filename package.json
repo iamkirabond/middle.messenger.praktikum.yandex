@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "start": "parcel index.html -p 3000",
-    "build": "parcel build ./src/pages/*.html",
+    "build": "parcel build *.html",
     "lint": "npx eslint . --fix --ext .ts && npx stylelint --fix **/*.scss",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r jsdom-global/register -r ts-node/register './src/**/*.spec.ts'"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r jsdom-global/register -r ts-node/register 'src/**/*.spec.ts'"
   },
   "keywords": [],
   "author": "",
