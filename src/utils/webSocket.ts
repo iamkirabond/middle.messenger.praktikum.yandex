@@ -2,7 +2,8 @@
 export default class Socket{
     socket: WebSocket;
     constructor(userId: string, chatId: string, token: string){
-        this.socket = new WebSocket('wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}'); 
+        this.socket = new WebSocket( `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`); 
+        
 
         this.socket.addEventListener('open', this.isOpen.bind(this));
         this.socket.addEventListener('close', this.toClose.bind(this));
