@@ -1,8 +1,8 @@
-export const ChatsItemTmpl = `<div class="chats-item" data-id={{{id}}}>
-        <div class="image-placeholder">
+export const ChatsItemTmpl = `<div class="chats-item clickable-chat" data-id={{{id}}}>
+        <div class="image-placeholder clickable-chat">
             <img alt="" src={{{avatar}}}>
         </div>
-        <div class="chat-info">
+        <div class="chat-info clickable-chat">
             <span class="chat-info-name">{{{title}}}</span>
         </div>
     </div>`;

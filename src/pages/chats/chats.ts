@@ -39,7 +39,6 @@ class Chats extends Block {
   clickHandler (event: Event){
 
     if(event.target){
-      event.preventDefault();
       if (event.target.id === 'profile-btn'){
         event.preventDefault();
         router.go('/profile');
@@ -102,7 +101,7 @@ class Chats extends Block {
         if(this.props.currentChatRoom)
           this.sendText();
       }
-      else if(event.target.closest('.chats-item').dataset.id){
+      else if(event.target.className.includes('clickable-chat')){
         let clickedId = event.target.closest('.chats-item').dataset.id;
         let currentRoom = this.props.chatRooms.filter(item => item.id == clickedId);
         let roomData = currentRoom[0];

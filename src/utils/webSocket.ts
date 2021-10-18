@@ -35,6 +35,10 @@ export default class Socket{
 
     sendMessage(message){
         console.log('отправляем', message);
-        this.socket.send(JSON.stringify(message))
+        this.socket.send(JSON.stringify(message));
+        this.socket.send(JSON.stringify({
+            content: '20',
+            type: 'get old',
+          })); 
     }
 }
