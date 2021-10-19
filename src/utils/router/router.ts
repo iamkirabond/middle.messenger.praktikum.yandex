@@ -47,13 +47,12 @@ class Router {
     _onRoute(pathname) {
         const route = this.getRoute(pathname);
         if (!route) {
-            return; //404
+            this.go('/404')
         }
 
-        if (this._currentRoute && this._currentRoute !== route) {
+        if (this._currentRoute) {
             this._currentRoute.leave();
         }
-
         this._currentRoute = route;
         route.render();
     }
