@@ -131,12 +131,13 @@ class Chats extends Block {
   }
 
   sendText(){
-    let text = document.getElementById('sendMessageInput').value;
+    let text = document.getElementById('sendMessageInput');
 
     socket.sendMessage({
-      content: text,
+      content: text.value,
       type: 'message',
-    })
+    });
+    text.value = '';
   }
   
   requestChats(){
@@ -168,7 +169,7 @@ class Chats extends Block {
       currentChatRoom: data.currentChatRoom ? data.currentChatRoom.content : null,
       profileBtn: new Button(data.profileBtn).render(),
       users: data.currentChatRoom ? userList.join('\n') : null,
-      history: 'Тут будет ваша история',
+      history: '',
     });
   }
 }

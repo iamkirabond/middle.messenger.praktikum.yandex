@@ -24,7 +24,7 @@ export default class AuthAPI extends BaseAPI {
         router.go('/messenger');
       })
       .catch((reject) => {
-        console.log(reject);
+        throw new Error(reject);
       });
   }
 
@@ -39,7 +39,7 @@ export default class AuthAPI extends BaseAPI {
         router.go('/');
       })
       .catch((reject) => {
-        console.log(reject);
+        throw new Error(reject);
       });
   }
 }
