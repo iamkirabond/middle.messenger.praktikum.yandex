@@ -13,7 +13,7 @@ class Error404 extends Block {
 
   render() {
     const data = this.props;
-    console.log(data);
+
     return templateForm({
       error: data.error,
       description: data.description,

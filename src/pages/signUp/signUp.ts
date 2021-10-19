@@ -57,7 +57,7 @@ class SignUp extends Block{
                 });
                 if (document.querySelectorAll('.input-error').length == 0){
                     let inputs = document.querySelectorAll('.input-block input');
-                    console.log(inputs[inputs.length-1].value, inputs[inputs.length-2].value, inputs[inputs.length-1].value === inputs[inputs.length-2].value)
+
                     if(inputs[inputs.length-1].value === inputs[inputs.length-2].value){
                         signUpInstance.signup(this.collectInput());    
                     }
