@@ -10,7 +10,7 @@ export default class userAPI extends BaseAPI {
   }
 
   updateAvatar(data) {
-    return userAPIInstance.put('/profile/avatar', data);
+    return userAPIInstance.put('/profile/avatar', {...data});
   }
 
   userSearch(login) {
@@ -23,7 +23,6 @@ export default class userAPI extends BaseAPI {
   }
 
   updatePassword(oldPassword, newPassword) {
-    console.log({ data: JSON.stringify({ oldPassword, newPassword }) });
     return userAPIInstance.put('/password', { data: JSON.stringify({ oldPassword, newPassword }) });
   }
 }

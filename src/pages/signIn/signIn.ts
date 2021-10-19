@@ -17,21 +17,9 @@ class SignInPage extends Block{
             ...props,
             events: {
                 click: event => this.clickHandler(event),
-                focusout: event => this.blurNow(event),
+                //focusout: event => this.blurNow(event),
             }
         })
-    }
-
-    blurNow(event) {
-        if(event.target.tagName === 'INPUT'){
-            let isValid = validationForm(event.target.value, event.target.dataset.type);
-            if (!isValid){
-                event.target.classList.add('input-error');
-            }
-            else{
-                event.target.classList.remove('input-error');
-            }
-        }
     }
 
     componentDidMount(){
@@ -51,24 +39,15 @@ class SignInPage extends Block{
         if(event.target){
             event.preventDefault();
             if(event.target.id === 'signin-btn'){
-                let inputs = document.querySelectorAll('input');
-                inputs.forEach((input) => {
-                   let isValid = validationForm(input.value, input.dataset.type);
-                   if (!isValid){
-                       input.classList.add('input-error');
-                   }
-                   else{
-                       input.classList.remove('input-error');
-                   }
-               });
-                if (document.querySelectorAll('.signin-inputs-area .input-error').length == 0){
-                    signInInstance.login(this.collectInput());
-                }
+                let inputsData = this.collectInput();
+                console.log(inputsData)
+                signInInstance.login(inputsData).then(response => {
+                    console.log(response);
+                })
             }
             else if(event.target.id === 'signup-btn'){
                 router.go('/signup');
-            }
-            
+            } 
         }
     }
 

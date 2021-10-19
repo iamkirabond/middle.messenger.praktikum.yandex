@@ -27,6 +27,7 @@ export default class Socket{
 
     getMessage(event) {
         console.log('Получены данные', event.data);   
+        console.log(JSON.parse(event.data))
     }
    
     getError(event) {
@@ -36,9 +37,5 @@ export default class Socket{
     sendMessage(message){
         console.log('отправляем', message);
         this.socket.send(JSON.stringify(message));
-        this.socket.send(JSON.stringify({
-            content: '20',
-            type: 'get old',
-          })); 
     }
 }
