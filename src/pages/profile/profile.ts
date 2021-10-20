@@ -75,7 +75,13 @@ class Profile extends Block {
       }
       else if(event.target.id === 'uploadAvatar' && document.getElementById('avatar').files!.length){
         event.preventDefault();
-        const userAvatarInput = document.getElementById('userAvatarInput');
+
+        const myUserForm = document.getElementById('myUserForm');
+        const avatar = document.getElementById('avatar');
+        const form = new FormData(myUserForm);
+        profileDataRequester.updateAvatar(form);
+        
+        /*const userAvatarInput = document.getElementById('userAvatarInput');
         const userAvatarFormData = new FormData();
         userAvatarFormData.append('avatar', userAvatarInput);
         profileDataRequester.updateAvatar({
@@ -83,7 +89,8 @@ class Profile extends Block {
             'content-type': 'multipart/form-data',
           },
           body: userAvatarFormData,
-        })
+        });
+        */
       }      
     }
   }
@@ -115,7 +122,7 @@ class Profile extends Block {
       lastname: new ProfileField(data.lastname).render(),
       nickname: new ProfileField(data.nickname).render(),
       phone: new ProfileField(data.phone).render(),
-      avatar: this.props.avatar,
+      avatar: this.props.avatar ? 'https://ya-praktikum.tech/api/v2/resources/' + this.props.avatar : null,
       oldPwd: new ProfileField(data.oldPwd).render(),
       newPwd: new ProfileField(data.newPwd).render(),
       duplicalePwd: new ProfileField(data.duplicatePwd).render(),

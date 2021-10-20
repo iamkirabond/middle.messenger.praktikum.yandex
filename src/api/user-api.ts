@@ -10,7 +10,7 @@ export default class userAPI extends BaseAPI {
   }
 
   updateAvatar(data) {
-    return userAPIInstance.put('/profile/avatar', {...data});
+    return userAPIInstance.put('/profile/avatar', { data });
   }
 
   userSearch(login) {

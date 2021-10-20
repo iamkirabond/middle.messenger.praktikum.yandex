@@ -9,9 +9,9 @@ export const ProfileForm = ` <div class="profile-wrapper">
                 </div>
                 <h2 class="profile-name">{{profileName}}</h2>
             </div>
-            <form id="changeAvatar">
-                Фото профиля: <input id="avatar" type="file" name="avatar" accept="image/*">
-                <button type="submit" class="upload-btn" id="uploadAvatar">Загрузить</button> 
+            <form id="myUserForm">
+                Аватар: <input id="avatar" type="file" name="avatar" accept="image/*">
+                <input type="submit" id="uploadAvatar">
             </form> 
             {{{mail}}}
             {{{login}}}
