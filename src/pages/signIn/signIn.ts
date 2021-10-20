@@ -40,7 +40,7 @@ class SignInPage extends Block{
             event.preventDefault();
             if(event.target.id === 'signin-btn'){
                 let inputsData = this.collectInput();
-                console.log(inputsData)
+
                 signInInstance.login(inputsData).then(response => {
                     console.log(response);
                 })

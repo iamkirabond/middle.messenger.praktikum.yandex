@@ -27,7 +27,7 @@ class Chats extends Block {
   }
 
   newChatInit(){
-    let modal = document.querySelectorAll('.new-chat-name.modal')[0];
+    let modal = document.querySelector('.new-chat-name.modal');
     modal.classList.toggle('d-flex');
   }
 

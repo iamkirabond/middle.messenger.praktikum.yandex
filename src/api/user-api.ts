@@ -14,7 +14,6 @@ export default class userAPI extends BaseAPI {
   }
 
   userSearch(login) {
-    console.log(login, { data: JSON.stringify({ login }) });
     return userAPIInstance.post('/search', { data: JSON.stringify({ login }) });
   }
 
