@@ -12,11 +12,9 @@ describe('Проверяем переходы у Роута', () => {
           <div id="root"></div>
         </body>
       </html>`,
-      { url: 'http://localhost' },
+      { url: 'http://localhost:3000' },
     );
 
-    global.window = dom.window;
-    global.document = dom.window.document;
     const router = new Router('#root');
     function initBlock() {
       return new Block();
@@ -24,7 +22,7 @@ describe('Проверяем переходы у Роута', () => {
     router.use('/404', initBlock);
     router.use('/500', initBlock);
     router.start();
-    global.router = router;
+
   });
 
   it('Переход на новую страницу меняет размер history', () => {
