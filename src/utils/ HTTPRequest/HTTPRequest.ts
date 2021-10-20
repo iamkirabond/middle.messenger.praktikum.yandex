@@ -1,4 +1,4 @@
-import Error500 from "../pages/500/500";
+import Error500 from "../../pages/500/500";
 
 const METHODS = {
     GET: 'GET',
@@ -31,23 +31,23 @@ export default class HTTPrequest {
       this.baseUrl = baseUrl;
     }
     
-    get = (url, options = {}) => {
+    get = (url, options: { [key: string]: any } = {}) => {
         return this.request(this.baseUrl + url, {...options, method: METHODS.GET}, options.timeout);
     };
 
-    post = (url, options = {}) => {
+    post = (url, options: { [key: string]: any } = {}) => {
         return this.request(this.baseUrl + url, {...options, method: METHODS.POST}, options.timeout);
     };
 
-    put = (url, options = {}) => {
+    put = (url, options: { [key: string]: any } = {}) => {
         return this.request(this.baseUrl + url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
-    delete = (url, options = {}) => {
+    delete = (url, options: { [key: string]: any } = {}) => {
         return this.request(this.baseUrl + url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
-    request = (url, options = {}, timeout = 5000) => {
+    request = (url, options: { [key: string]: any } = {}, timeout = 5000) => {
         const {headers = {}, method, data} = options;
 
         return new Promise(function(resolve, reject) {
@@ -91,7 +91,7 @@ export default class HTTPrequest {
             if (isGet || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(JSON.stringify(data));
             }
         });
     };

@@ -1,5 +1,5 @@
 import router from '../pages';
-import HTTPrequest from '../utils/HTTPRequest';
+import HTTPrequest from '../utils/ HTTPRequest/HTTPRequest';
 import { BaseAPI } from './base-api';
 
 const host = 'https://ya-praktikum.tech';

@@ -1,4 +1,4 @@
-import { HTTPrequest } from '../utils/HTTPRequest';
+import { HTTPrequest } from '../utils/ HTTPRequest/HTTPRequest';
 import { BaseAPI } from './base-api';
 
 const chatMessagesAPIInstance = new HTTPrequest('api/v1/messages');
