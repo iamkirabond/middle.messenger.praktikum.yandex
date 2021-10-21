@@ -34,13 +34,10 @@ class Router {
     }
 
     start() {
-        //@ts-ignore
         window.onpopstate = (event => {
-            //@ts-ignore
             this._onRoute(event.currentTarget.location.pathname);
         }).bind(this);
 
-        //@ts-ignore
         this._onRoute(window.location.pathname);
     }
 
