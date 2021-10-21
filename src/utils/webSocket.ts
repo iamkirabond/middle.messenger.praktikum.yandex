@@ -40,9 +40,9 @@ export default class Socket{
         console.log('Получены данные', event.data);   
         let response = JSON.parse(event.data);
         if(response.length > 1){
-            response.forEach( msg => {
-                this.showMessage(msg)
-            })
+            for (let msg = response.length - 1; msg >= 0; msg--){
+                this.showMessage(response[msg])
+            }
             return;
         }
         if(response.type && response.type !== 'user connected'){
