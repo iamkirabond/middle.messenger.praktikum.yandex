@@ -45,8 +45,9 @@ export default class Socket{
             })
             return;
         }
-        if(response.type !== 'user connected')
+        if(response.type && response.type !== 'user connected'){
             this.showMessage(JSON.parse(event.data));
+        }
     }
    
     getError(event) {
