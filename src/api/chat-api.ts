@@ -34,11 +34,11 @@ export default class ChatAPI extends BaseAPI {
   }
 
   deleteUser(users, chatId) {
-    return chatAPIInstance.delete('/users', { data: JSON.stringify({ users, chatId }) });
+    return chatAPIInstance.delete('/users', { data: { users, chatId } });
   }
 
   addUser(users, chatId) {
-    return chatAPIInstance.put('/users', { data: JSON.stringify({ users, chatId }) });
+    return chatAPIInstance.put('/users', { data: { users, chatId } });
   }
 
   create() {

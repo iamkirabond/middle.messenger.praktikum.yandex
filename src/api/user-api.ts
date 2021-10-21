@@ -14,7 +14,7 @@ export default class userAPI extends BaseAPI {
   }
 
   userSearch(login) {
-    return userAPIInstance.post('/search', { data: JSON.stringify({ login }) });
+    return userAPIInstance.post('/search', { data: { login } });
   }
 
   getUsersInfo(id) {
@@ -22,6 +22,6 @@ export default class userAPI extends BaseAPI {
   }
 
   updatePassword(oldPassword, newPassword) {
-    return userAPIInstance.put('/password', { data: JSON.stringify({ oldPassword, newPassword }) });
+    return userAPIInstance.put('/password', { data: { oldPassword, newPassword } });
   }
 }
