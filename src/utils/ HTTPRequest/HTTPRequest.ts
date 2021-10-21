@@ -67,8 +67,6 @@ export default class HTTPrequest {
                     : url,
             );
 
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
             Object.keys(headers).forEach(key => {
                 xhr.setRequestHeader(key, headers[key]);
             });
@@ -91,7 +89,12 @@ export default class HTTPrequest {
             if (isGet || !data) {
                 xhr.send();
             } else {
-                xhr.send(JSON.stringify(data));
+                if (data instanceof FormData) {
+                    xhr.send(data);
+                } else {
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(data));
+                }
             }
         });
     };

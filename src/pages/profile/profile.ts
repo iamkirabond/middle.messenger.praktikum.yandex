@@ -79,18 +79,10 @@ class Profile extends Block {
         const myUserForm = document.getElementById('myUserForm');
         const avatar = document.getElementById('avatar');
         const form = new FormData(myUserForm);
-        profileDataRequester.updateAvatar(form);
-        
-        /*const userAvatarInput = document.getElementById('userAvatarInput');
-        const userAvatarFormData = new FormData();
-        userAvatarFormData.append('avatar', userAvatarInput);
-        profileDataRequester.updateAvatar({
-          headers: {
-            'content-type': 'multipart/form-data',
-          },
-          body: userAvatarFormData,
-        });
-        */
+        profileDataRequester.updateAvatar(form)
+        .then(() => {
+          router.go('/profile');
+        })
       }      
     }
   }
