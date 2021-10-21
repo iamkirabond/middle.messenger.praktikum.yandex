@@ -15,7 +15,7 @@ const chatInstance = new ChatAPI()
 export default class UserAuthController {
   public async login(data: LoginFormModel) {
     try {
-        await authInstance.signin(JSON.stringify(data));
+        await authInstance.signin(data);
     } 
     catch (error) {
         alert('Wrong login or password!')
@@ -23,7 +23,7 @@ export default class UserAuthController {
   }
   public async signup(data) {
     try {
-        await authInstance.signup(JSON.stringify(data));
+        await authInstance.signup(data);
         
     } 
     catch (error) {
@@ -56,7 +56,7 @@ export default class UserAuthController {
   }
   public async updateInfo(data) {
     try {
-        await userInstance.editprofile(JSON.stringify(data));
+        await userInstance.editprofile(data);
     } 
     catch (error) {
         console.log(JSON.parse(error.response));
