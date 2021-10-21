@@ -10,7 +10,7 @@ export default class ChatAPI extends BaseAPI {
   }
 
   createChat(title) {
-    return chatAPIInstance.post('/', { data: JSON.stringify({ title }) }); 
+    return chatAPIInstance.post('/', { data: title }); 
   }
 
   deleteChat() {
