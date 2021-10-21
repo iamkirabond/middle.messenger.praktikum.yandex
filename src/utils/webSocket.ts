@@ -20,6 +20,10 @@ export default class Socket{
     
     isOpen() {
         console.log('Соединение установлено');
+        this.socket.send(JSON.stringify({
+			content: '0',
+			type: 'get old',
+		}));
     }
     
     isClosed(event) {
@@ -34,8 +38,13 @@ export default class Socket{
 
     getMessage(event) {
         console.log('Получены данные', event.data);   
-        console.log(JSON.parse(event.data))
         let response = JSON.parse(event.data);
+        if(response.length > 1){
+            response.forEach( msg => {
+                this.showMessage(msg)
+            })
+            return;
+        }
         if(response.type !== 'user connected')
             this.showMessage(JSON.parse(event.data));
     }
@@ -50,7 +59,6 @@ export default class Socket{
     }
 
     showMessage(data){
-        console.log(data.content, data.user_id);
         let msg = new ChatMessage({
             text: data.content,
             class: data.user_id == this.userId ? 'chat-msg-user' : 'chat-msg-other',
