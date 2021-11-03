@@ -1,12 +1,16 @@
 import Handlebars from 'handlebars';
 import { SignUpForm } from '../../templates/Authorization/SignUp.tmpl';
-import Block from "../../utils/block";
+import Block from "../../utils/block/block";
 import InputField from "../../components/inputField/InputField";
 import Button from "../../components/button/Button";
-import {validationForm} from "../../utils/validation";
+import { validationForm } from "../../utils/validation";
+import router from '../index';
+import UserAuthController from '../../controllers/user-auth';
+import './signUp.scss';
 
+const signUpInstance = new UserAuthController;
 
-class SignUpPage extends Block{
+class SignUp extends Block{
     constructor(props) {
         super('div', {...props,
             events: {
@@ -27,14 +31,22 @@ class SignUpPage extends Block{
         }
     }
 
+    collectInput(){
+        let inputs = document.querySelectorAll('input');
+        let data = {};
+        inputs.forEach((input) => {
+            data[input.dataset.type] = input.value;
+        });
+        return data;
+    }
 
     clickHandler (event: Event){
         if(event.target){
             event.preventDefault();
             if(event.target.id === 'signup-btn'){
-                let inputs = document.querySelectorAll('input');
+                let inputs = document.querySelectorAll('.input-block input');
                 inputs.forEach((input) => {
-                    console.log(input.dataset.type, input.value)
+                    console.log(input.dataset.type, input.value);
                     let isValid = validationForm(input.value, input.dataset.type);
                     if (!isValid){
                         input.classList.add('input-error');
@@ -43,6 +55,19 @@ class SignUpPage extends Block{
                         input.classList.remove('input-error');
                     }
                 });
+                if (document.querySelectorAll('.input-error').length == 0){
+                    let inputs = document.querySelectorAll('.input-block input');
+
+                    if(inputs[inputs.length-1].value === inputs[inputs.length-2].value){
+                        signUpInstance.signup(this.collectInput());    
+                    }
+                    else{
+                        alert('Passwords not match!');
+                    }
+                }
+            }
+            else if(event.target.id === 'signin-btn'){
+                router.go('/');
             }
 
         }
@@ -67,4 +92,4 @@ class SignUpPage extends Block{
     }
 }
 
-export default SignUpPage;
+export default SignUp;

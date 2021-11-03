@@ -1,5 +1,5 @@
 export const buttonTmpl = `
-<button class="{{style}}" type="{{type}}" data-link="{{link}}" id="{{id}}">
+<button class="{{style}}" type="{{type}}" id="{{id}}">
     {{text}}
 </button>
 `;

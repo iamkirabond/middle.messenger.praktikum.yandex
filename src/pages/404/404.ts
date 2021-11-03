@@ -1,16 +1,24 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
-import { Error } from '../../templates/Error/Error.tmpl';
+import Block from '../../utils/block/block';
+import { ErrorTmpl } from '../../templates/Error/Error.tmpl';
+import './404.scss';
 
+const templateForm = Handlebars.compile(ErrorTmpl);
 
-const data = {
-    error: '404',
-    description: 'Не туда попали',
-};
+class Error404 extends Block {
+  constructor(props) {
+    super('div', props);
+  }
 
-const template = Handlebars.compile(Error);
-const htmlContent = template(data);
+  render() {
+    const data = this.props;
 
-const pageContent = document.getElementById('page-content');
-if (pageContent) {
-    pageContent.innerHTML = htmlContent;
+    return templateForm({
+      error: data.error,
+      description: data.description,
+    });
+  }
 }
+
+export default Error404;

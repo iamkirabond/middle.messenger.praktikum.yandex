@@ -1,3 +1,5 @@
+import Error500 from "../../pages/500/500";
+
 const METHODS = {
     GET: 'GET',
     POST: 'POST',
@@ -22,25 +24,30 @@ function queryStringify(data) {
     }, '?');
 }
 
-class HTTPTransport {
-    get = (url, options = {}) => {
-
-        return this.request(url, {...options, method: METHODS.GET}, options.timeout);
+export default class HTTPrequest {
+    baseUrl: string;
+  
+    constructor(baseUrl = '/') {
+      this.baseUrl = baseUrl;
+    }
+    
+    get = (url, options: { [key: string]: any } = {}) => {
+        return this.request(this.baseUrl + url, {...options, method: METHODS.GET}, options.timeout);
     };
 
-    post = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
+    post = (url, options: { [key: string]: any } = {}) => {
+        return this.request(this.baseUrl + url, {...options, method: METHODS.POST}, options.timeout);
     };
 
-    put = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
+    put = (url, options: { [key: string]: any } = {}) => {
+        return this.request(this.baseUrl + url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
-    delete = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
+    delete = (url, options: { [key: string]: any } = {}) => {
+        return this.request(this.baseUrl + url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
-    request = (url, options = {}, timeout = 5000) => {
+    request = (url, options: { [key: string]: any } = {}, timeout = 5000) => {
         const {headers = {}, method, data} = options;
 
         return new Promise(function(resolve, reject) {
@@ -52,6 +59,7 @@ class HTTPTransport {
             const xhr = new XMLHttpRequest();
             const isGet = method === METHODS.GET;
 
+            xhr.withCredentials = true;
             xhr.open(
                 method,
                 isGet && !!data
@@ -64,7 +72,12 @@ class HTTPTransport {
             });
 
             xhr.onload = function() {
-                resolve(xhr);
+                if(xhr.status >= 200 && xhr.status < 300){
+                    resolve(xhr.response);
+                }
+                else{
+                    reject(xhr.response);
+                }
             };
 
             xhr.onabort = reject;
@@ -76,7 +89,12 @@ class HTTPTransport {
             if (isGet || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                if (data instanceof FormData) {
+                    xhr.send(data);
+                } else {
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(data));
+                }
             }
         });
     };

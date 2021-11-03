@@ -7,12 +7,11 @@
     &::-webkit-input-placeholder { @content };
 }
 body{
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.signin-window{
+.signup-window{
     min-height: 480px;
     width: 340px;
     border-radius: 12px;
@@ -23,13 +22,13 @@ body{
     flex-direction: column;
     padding: 50px 30px 30px; 
     
-    .signin-title{
+    .signup-title{
         font-size: 20px;
         color: $primary-color;
         font-weight: 500;
         margin-bottom: 40px;
     }
-    .signin-form, .signin-inputs-area{
+    .signup-form, .signup-inputs-area{
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -39,7 +38,7 @@ body{
             color: $label-color;
             margin-bottom: 8px;
         }
-        .input, .signin-btn{
+        .input, .signup-btn{
             font-size: 13px;
             line-height: 13px;
         }
