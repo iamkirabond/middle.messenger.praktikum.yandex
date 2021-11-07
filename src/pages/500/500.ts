@@ -1,16 +1,22 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
-import { Error } from '../../templates/Error/Error.tmpl';
+import Block from '../../utils/block/block';
+import { ErrorTmpl } from '../../templates/Error/Error.tmpl';
 
+const templateForm = Handlebars.compile(ErrorTmpl);
 
-const data = {
-    error: '500',
-    description: 'Мы уже фиксим',
-};
+class Error500 extends Block {
+  constructor(props) {
+    super('div', props);
+  }
 
-const template = Handlebars.compile(Error);
-const htmlContent = template(data);
-
-const pageContent = document.getElementById('page-content');
-if (pageContent) {
-    pageContent.innerHTML = htmlContent;
+  render() {
+    const data = this.props;
+    return templateForm({
+      error: data.error,
+      description: data.description,
+    });
+  }
 }
+
+export default Error500;

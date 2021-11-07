@@ -1,6 +1,6 @@
-export const SignUpForm = ` <div class="signin-window">
-    <h1 class="signin-title">{{title}}</h1>
-    <form class="signin-form form" action="">
+export const SignUpForm = ` <div class="signup-window">
+    <h1 class="signup-title">{{title}}</h1>
+    <form class="signup-form form" action="">
             {{{email}}}
             {{{login}}}
             {{{first_name}}}

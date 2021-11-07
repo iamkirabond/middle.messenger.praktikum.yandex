@@ -1,6 +1,7 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
 import { InputFieldTmpl } from "../../templates/inputField/inputField.tmpl";
-import Block from '../../utils/block'
+import Block from '../../utils/block/block'
 
 const templateBtn = Handlebars.compile(InputFieldTmpl);
 

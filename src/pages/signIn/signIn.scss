@@ -7,7 +7,6 @@
     &::-webkit-input-placeholder { @content };
 }
 body{
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,6 +57,10 @@ body{
             color: $white;
             border: none;
             border-radius: 8px;
+            
+            &:hover{
+                cursor: pointer;
+            }
         }
         
     }
@@ -70,5 +73,9 @@ body{
         color: $accent-color;
         text-decoration: none;
         margin-top: 14px;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 }
