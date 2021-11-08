@@ -1,15 +1,15 @@
-const express = require('express');
+import express, { static } from 'express';
 
 const app = express();
 const port = process.env.PORT || PORT;
-const path = require('path');
+import { join } from 'path';
 
-app.use(express.static(`${__dirname}/dist`));
+app.use(static(`${__dirname}/dist`));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dist/index.html'));
+  res.sendFile(join(__dirname, '/dist/index.html'));
 });
 
 app.listen(port, () => {
-  console.log(`ready to go on port ${PORT}`);
+  console.log(`App on port ${PORT}`);
 });
