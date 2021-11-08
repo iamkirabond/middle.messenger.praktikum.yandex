@@ -39,30 +39,30 @@ class Chats extends Block {
   clickHandler (event: Event){
 
     if(event.target){
-      if (event.target.id === 'profile-btn'){
+      if ((event.target as HTMLTextAreaElement).id === 'profile-btn'){
         event.preventDefault();
         router.go('/profile');
       }
-      else if (event.target.id === 'addChat'){
+      else if ((event.target as HTMLTextAreaElement).id === 'addChat'){
         event.preventDefault();
         this.newChatInit(); 
       }
-      else if (event.target.id === 'openSettings'){
+      else if ((event.target as HTMLTextAreaElement).id === 'openSettings'){
         event.preventDefault();
         this.openSettings(); 
       }
-      else if (event.target.id === 'addUserByLogin'){
+      else if ((event.target as HTMLTextAreaElement).id === 'addUserByLogin'){
         event.preventDefault();
-        let login = document.querySelectorAll('.settings-modal input')[0].value;
+        let login = (document.querySelectorAll('.settings-modal input')[0] as HTMLTextAreaElement).value;
         if (login.length > 0){
           chatDataRequester.userSearch(login)
-          .then(response =>{
+          .then((response: string) =>{
             if(response){
               let {id} = JSON.parse(response)[0];
               chatDataRequester.addUserToChat(id, this.props.currentChatRoom.roomData.id)
               .then(response => {
                 chatDataRequester.getChatUsers(this.props.currentChatRoom.roomData.id)
-                .then(response => {
+                .then((response: string) => {
                   let usersInChat = JSON.parse(response);
 
                   this.props.currentChatRoom = {...this.props.currentChatRoom, usersInChat};
@@ -73,21 +73,21 @@ class Chats extends Block {
           })
         }
       }
-      else if (event.target.id === 'newChatSubmit'){
+      else if ((event.target as HTMLTextAreaElement).id === 'newChatSubmit'){
         event.preventDefault();
-        let chatName = document.querySelectorAll('.new-chat-name input')[0].value;
+        let chatName = (document.querySelectorAll('.new-chat-name input')[0] as HTMLTextAreaElement).value;
         chatDataRequester.createChat(chatName)
         .then(() => {
           this.requestChats()
         })
         .catch(data => console.log(JSON.parse(data.response)));
       }
-      else if (event.target.id === 'removeUserFromChat'){
+      else if ((event.target as HTMLTextAreaElement).id === 'removeUserFromChat'){
         event.preventDefault();
-        chatDataRequester.deleteUser(event.target.dataset.id, this.props.currentChatRoom.roomData.id)
+        chatDataRequester.deleteUser((event.target as HTMLTextAreaElement).dataset.id, this.props.currentChatRoom.roomData.id)
         .then(response => {
           chatDataRequester.getChatUsers(this.props.currentChatRoom.roomData.id)
-          .then(response => {
+          .then((response: string) => {
             let usersInChat = JSON.parse(response);
 
             this.props.currentChatRoom = {...this.props.currentChatRoom, usersInChat};
@@ -95,24 +95,25 @@ class Chats extends Block {
           .catch(data => console.log(JSON.parse(data.response)));
         })
       }
-      else if (event.target.id === 'sendMessageSubmit'){
+      else if ((event.target as HTMLTextAreaElement).id === 'sendMessageSubmit'){
         event.preventDefault();
 
         if(this.props.currentChatRoom)
           this.sendText();
       }
-      else if(event.target.className.includes('clickable-chat')){
-        let clickedId = event.target.closest('.chats-item').dataset.id;
+      else if((event.target as HTMLTextAreaElement).className.includes('clickable-chat')){
+        let clickedId:any = (event.target as HTMLTextAreaElement).closest('.chats-item');
+        clickedId = (clickedId as HTMLTextAreaElement).dataset.id
         let currentRoom = this.props.chatRooms.filter(item => item.id == clickedId);
         let roomData = currentRoom[0];
         let content = new ChatCurrent(roomData).render();
 
         chatDataRequester.getChatUsers(roomData.id)
-        .then(response => {
+        .then((response: string) => {
           let usersInChat = JSON.parse(response);
           
          chatDataRequester.getToken(roomData.id)
-         .then((response)=>{
+         .then((response: string)=>{
            let {token} = JSON.parse(response);
 
            roomData.token = token;
@@ -134,15 +135,15 @@ class Chats extends Block {
     let text = document.getElementById('sendMessageInput');
 
     socket.sendMessage({
-      content: text.value,
+      content: (text as HTMLTextAreaElement).value,
       type: 'message',
     });
-    text.value = '';
+    (text as HTMLTextAreaElement).value = '';
   }
   
   requestChats(){
     return chatDataRequester.getChats()
-    .then((response) => {
+    .then((response: string) => {
       this.props.chatRooms = JSON.parse(response);
     })
     .catch(data => console.log(JSON.parse(data.response)));

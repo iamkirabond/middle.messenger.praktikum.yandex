@@ -1,21 +1,19 @@
-// webpack.config.js
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  entry: './index.ts',
+  mode: process.env.NODE_ENV,
+  entry: './src/pages/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'project-name.bundle.js',
+    filename: './src/pages/index.js',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
+    alias: {
+      handlebars: 'handlebars/dist/handlebars.min.js',
+    },
   },
-  plugins: [new HtmlWebpackPlugin({
-    title: 'Messenger',
-  })],
   module: {
     rules: [
       {
@@ -30,15 +28,28 @@ module.exports = {
         ],
         exclude: /(node_modules)/,
       },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+  ],
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    watchFiles: ['src/**/*.ts', 'src/**/*.scss'],
-    compress: true,
+    watch: true,
     hot: true,
-    port: 3000,
+    historyApiFallback: true,
+    static: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 4000,
+    open: true,
   },
 };

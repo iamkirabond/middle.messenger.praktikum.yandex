@@ -1,4 +1,3 @@
-import Handlebars from 'handlebars';
 import { SignUpForm } from '../../templates/Authorization/SignUp.tmpl';
 import Block from "../../utils/block/block";
 import InputField from "../../components/inputField/InputField";
@@ -7,6 +6,7 @@ import { validationForm } from "../../utils/validation";
 import router from '../index';
 import UserAuthController from '../../controllers/user-auth';
 import './signUp.scss';
+const Handlebars = require("handlebars");
 
 const signUpInstance = new UserAuthController;
 
@@ -43,11 +43,11 @@ class SignUp extends Block{
     clickHandler (event: Event){
         if(event.target){
             event.preventDefault();
-            if(event.target.id === 'signup-btn'){
+            if((event.target as HTMLTextAreaElement).id === 'signup-btn'){
                 let inputs = document.querySelectorAll('.input-block input');
                 inputs.forEach((input) => {
-                    console.log(input.dataset.type, input.value);
-                    let isValid = validationForm(input.value, input.dataset.type);
+                    console.log((input as HTMLTextAreaElement).dataset.type, (input as HTMLTextAreaElement).value);
+                    let isValid = validationForm((input as HTMLTextAreaElement).value, (input as HTMLTextAreaElement).dataset.type);
                     if (!isValid){
                         input.classList.add('input-error');
                     }
@@ -58,7 +58,7 @@ class SignUp extends Block{
                 if (document.querySelectorAll('.input-error').length == 0){
                     let inputs = document.querySelectorAll('.input-block input');
 
-                    if(inputs[inputs.length-1].value === inputs[inputs.length-2].value){
+                    if((inputs[inputs.length-1] as HTMLTextAreaElement).value === (inputs[inputs.length-2] as HTMLTextAreaElement).value){
                         signUpInstance.signup(this.collectInput());    
                     }
                     else{
@@ -66,7 +66,7 @@ class SignUp extends Block{
                     }
                 }
             }
-            else if(event.target.id === 'signin-btn'){
+            else if((event.target as HTMLTextAreaElement).id === 'signin-btn'){
                 router.go('/');
             }
 

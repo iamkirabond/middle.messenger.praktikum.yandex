@@ -1,5 +1,3 @@
-// @ts-ignore
-import Handlebars from 'handlebars';
 import { SignInForm } from '../../templates/Authorization/SignIn.tmpl';
 import Block from "../../utils/block/block";
 import InputField from "../../components/inputField/InputField";
@@ -8,7 +6,13 @@ import { validationForm } from "../../utils/validation";
 import router from '../index';
 import UserAuthController from '../../controllers/user-auth';
 import './signIn.scss';
+const Handlebars = require("handlebars");
 
+
+interface LoginFormModel {
+    login: string;
+    password: string;
+  }
 const signInInstance = new UserAuthController();
 
 class SignInPage extends Block{
@@ -28,7 +32,7 @@ class SignInPage extends Block{
 
     collectInput(){
         let inputs = document.querySelectorAll('input');
-        let data = {};
+        let data: LoginFormModel;
         inputs.forEach((input) => {
             data[input.dataset.type] = input.value;
         });
@@ -38,14 +42,14 @@ class SignInPage extends Block{
     clickHandler (event: Event){
         if(event.target){
             event.preventDefault();
-            if(event.target.id === 'signin-btn'){
-                let inputsData = this.collectInput();
+            if((event.target as HTMLTextAreaElement).id === 'signin-btn'){
+                let inputsData: LoginFormModel = this.collectInput();
 
                 signInInstance.login(inputsData).then(response => {
                     console.log(response);
                 })
             }
-            else if(event.target.id === 'signup-btn'){
+            else if((event.target as HTMLTextAreaElement).id === 'signup-btn'){
                 router.go('/signup');
             } 
         }
