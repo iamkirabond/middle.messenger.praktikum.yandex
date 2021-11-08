@@ -44,12 +44,16 @@ module.exports = {
     }),
   ],
   devServer: {
-    watch: true,
     hot: true,
     historyApiFallback: true,
     static: path.join(__dirname, 'dist'),
     compress: true,
     port: 4000,
     open: true,
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 };
