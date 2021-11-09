@@ -4,6 +4,13 @@ https://github.com/iamkirabond/middle.messenger.praktikum.yandex/pull/4
 
 Repos - https://github.com/iamkirabond/middle.messenger.praktikum.yandex
 
+Спринт 4
+
+- сборщик webpack
+- Husky precommit
+- собрала Docker контейнер
+- деплой на heroku
+
 Спринт 3
 
 - Доработана страница чатов
