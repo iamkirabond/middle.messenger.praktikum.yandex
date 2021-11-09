@@ -39,7 +39,7 @@ export default class Socket{
     getMessage(event) {
         console.log('Получены данные', event.data);   
         let response = JSON.parse(event.data);
-        if(response.length > 1){
+        if(response.length > 0){
             for (let msg = response.length - 1; msg >= 0; msg--){
                 this.showMessage(response[msg])
             }
