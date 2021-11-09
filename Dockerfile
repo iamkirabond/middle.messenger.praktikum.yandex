@@ -1,7 +1,6 @@
 FROM node:14
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
-RUN npm install && npm run build
 COPY . .
+RUN npm install && npm run build
 EXPOSE 3000
-CMD node server.ts 
+CMD node server.ts

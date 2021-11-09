@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -39,6 +40,17 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'static/images',
+          to: './images',
+        },
+        {
+          from: 'favicon.ico',
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
@@ -48,7 +60,7 @@ module.exports = {
     historyApiFallback: true,
     static: path.join(__dirname, 'dist'),
     compress: true,
-    port: 4000,
+    port: 3000,
     open: true,
   },
   performance: {
