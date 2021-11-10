@@ -12,6 +12,10 @@ import { validationForm } from '../../utils/validation';
 const templateForm = Handlebars.compile(ProfileForm);
 const profileDataRequester = new UserAuthController();
 
+const OLD_PASSWORD = 0;
+const NEW_PASSWORD_INPUT_NUMBER = 1;
+const NEW_PASSWORD_INPUT_NUMBER_REPEAT = 2;
+
 class Profile extends Block {
   constructor(props) {
     super('div', {...props,
@@ -23,33 +27,35 @@ class Profile extends Block {
 
   collectInput(){
     let inputs = document.querySelectorAll('.profile-input');
-    let data = {};
+    let data = {
+      first_name: ''
+    };
     inputs.forEach((input) => {
-        data[input.dataset.type] = input.value;
+        data[(input as HTMLTextAreaElement).dataset.type] = (input as HTMLTextAreaElement).value;
     });
     return {...data, display_name: data.first_name};
   }
   
   clickHandler(event:Event){
     if (event.target){
-      if(event.target.id === 'profile-back-btn'){
+      if((event.target as HTMLTextAreaElement).id === 'profile-back-btn'){
         event.preventDefault();
         router.go('/messenger');
       }
-      else if(event.target.id === 'logout'){
+      else if((event.target as HTMLTextAreaElement).id === 'logout'){
         event.preventDefault();
         profileDataRequester.logout();
       }
-      else if(event.target.id === 'updatePassword' || event.target.id === 'canselUpdatePassword' ){
+      else if((event.target as HTMLTextAreaElement).id === 'updatePassword' || (event.target as HTMLTextAreaElement).id === 'canselUpdatePassword' ){
         event.preventDefault();
         toggleModal('.update-password-wrapper')
         
       }
-      else if(event.target.id === 'submitUpdatePassword'){
+      else if((event.target as HTMLTextAreaElement).id === 'submitUpdatePassword'){
           let inputs = document.querySelectorAll('.update-password input');
           inputs.forEach((input) => {
-              console.log(input.dataset.type, input.value);
-              let isValid = validationForm(input.value, input.dataset.type);
+              console.log((input as HTMLTextAreaElement).dataset.type, (input as HTMLTextAreaElement).value);
+              let isValid = validationForm((input as HTMLTextAreaElement).value, (input as HTMLTextAreaElement).dataset.type);
               if (!isValid){
                   input.classList.add('input-error');
               }
@@ -59,26 +65,27 @@ class Profile extends Block {
           });
           if (document.querySelectorAll('.input-error').length == 0){
             let inputs = document.querySelectorAll('.update-password input');
-            if (inputs[1].value == inputs[2].value){
-              profileDataRequester.changePassword(inputs[0].value, inputs[1].value)
-              .then(response => {
-                toggleModal('.update-password-wrapper')
+            if ((inputs[NEW_PASSWORD_INPUT_NUMBER] as HTMLTextAreaElement).value == (inputs[NEW_PASSWORD_INPUT_NUMBER_REPEAT] as HTMLTextAreaElement).value){
+              profileDataRequester.changePassword((inputs[OLD_PASSWORD] as HTMLTextAreaElement).value, (inputs[NEW_PASSWORD_INPUT_NUMBER] as HTMLTextAreaElement).value)
+              .then(() => {
+                toggleModal('.update-password-wrapper');
+                inputs.forEach((input:HTMLTextAreaElement) => input.value = '')
               })
               .catch(data => console.log(JSON.parse(data.response)));              
              }
           }
         }
-      else if(event.target.id === 'updateInfo'){
+      else if((event.target as HTMLTextAreaElement).id === 'updateInfo'){
         event.preventDefault();
         let data = this.collectInput();
         profileDataRequester.updateInfo(data);
       }
-      else if(event.target.id === 'uploadAvatar' && document.getElementById('avatar').files!.length){
+      else if((event.target as HTMLTextAreaElement).id === 'uploadAvatar' && (<HTMLInputElement>document.getElementById('avatar')).files!.length){
         event.preventDefault();
 
         const myUserForm = document.getElementById('myUserForm');
         const avatar = document.getElementById('avatar');
-        const form = new FormData(myUserForm);
+        const form = new FormData(myUserForm as HTMLFormElement);
         profileDataRequester.updateAvatar(form)
         .then(() => {
           router.go('/profile');

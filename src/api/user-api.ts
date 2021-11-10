@@ -1,4 +1,4 @@
-import HTTPrequest from '../utils/ HTTPRequest/HTTPRequest';
+import HTTPrequest from '../utils/HTTPRequest/HTTPRequest';
 import { BaseAPI } from './base-api';
 
 const host = 'https://ya-praktikum.tech';

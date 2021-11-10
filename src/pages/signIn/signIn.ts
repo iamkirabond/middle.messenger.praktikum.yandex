@@ -9,6 +9,11 @@ import router from '../index';
 import UserAuthController from '../../controllers/user-auth';
 import './signIn.scss';
 
+
+interface LoginFormModel {
+    login: string;
+    password: string;
+  }
 const signInInstance = new UserAuthController();
 
 class SignInPage extends Block{
@@ -28,7 +33,7 @@ class SignInPage extends Block{
 
     collectInput(){
         let inputs = document.querySelectorAll('input');
-        let data = {};
+        let data: LoginFormModel;
         inputs.forEach((input) => {
             data[input.dataset.type] = input.value;
         });
@@ -36,16 +41,18 @@ class SignInPage extends Block{
     }
 
     clickHandler (event: Event){
-        if(event.target){
+        const target = event.target as HTMLTextAreaElement;
+
+        if(target){
             event.preventDefault();
-            if(event.target.id === 'signin-btn'){
-                let inputsData = this.collectInput();
+            if(target.id === 'signin-btn'){
+                let inputsData: LoginFormModel = this.collectInput();
 
                 signInInstance.login(inputsData).then(response => {
                     console.log(response);
                 })
             }
-            else if(event.target.id === 'signup-btn'){
+            else if(target.id === 'signup-btn'){
                 router.go('/signup');
             } 
         }
