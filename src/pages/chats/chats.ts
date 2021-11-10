@@ -36,22 +36,24 @@ class Chats extends Block {
     modal.classList.toggle('d-flex');
   }
 
-  clickHandler (event: Event){
 
-    if(event.target){
-      if ((event.target as HTMLTextAreaElement).id === 'profile-btn'){
+  clickHandler (event: Event){
+    const target = event.target as HTMLTextAreaElement;
+
+    if(target){
+      if (target.id === 'profile-btn'){
         event.preventDefault();
         router.go('/profile');
       }
-      else if ((event.target as HTMLTextAreaElement).id === 'addChat'){
+      else if (target.id === 'addChat'){
         event.preventDefault();
         this.newChatInit(); 
       }
-      else if ((event.target as HTMLTextAreaElement).id === 'openSettings'){
+      else if (target.id === 'openSettings'){
         event.preventDefault();
         this.openSettings(); 
       }
-      else if ((event.target as HTMLTextAreaElement).id === 'addUserByLogin'){
+      else if (target.id === 'addUserByLogin'){
         event.preventDefault();
         let login = (document.querySelectorAll('.settings-modal input')[0] as HTMLTextAreaElement).value;
         if (login.length > 0){
@@ -73,7 +75,7 @@ class Chats extends Block {
           })
         }
       }
-      else if ((event.target as HTMLTextAreaElement).id === 'newChatSubmit'){
+      else if (target.id === 'newChatSubmit'){
         event.preventDefault();
         let chatName = (document.querySelectorAll('.new-chat-name input')[0] as HTMLTextAreaElement).value;
         chatDataRequester.createChat(chatName)
@@ -82,9 +84,9 @@ class Chats extends Block {
         })
         .catch(data => console.log(JSON.parse(data.response)));
       }
-      else if ((event.target as HTMLTextAreaElement).id === 'removeUserFromChat'){
+      else if (target.id === 'removeUserFromChat'){
         event.preventDefault();
-        chatDataRequester.deleteUser((event.target as HTMLTextAreaElement).dataset.id, this.props.currentChatRoom.roomData.id)
+        chatDataRequester.deleteUser(target.dataset.id, this.props.currentChatRoom.roomData.id)
         .then(response => {
           chatDataRequester.getChatUsers(this.props.currentChatRoom.roomData.id)
           .then((response: string) => {
@@ -95,16 +97,18 @@ class Chats extends Block {
           .catch(data => console.log(JSON.parse(data.response)));
         })
       }
-      else if ((event.target as HTMLTextAreaElement).id === 'sendMessageSubmit'){
+      else if (target.id === 'sendMessageSubmit'){
         event.preventDefault();
 
         if(this.props.currentChatRoom)
           this.sendText();
       }
-      else if((event.target as HTMLTextAreaElement).className.includes('clickable-chat')){
-        let clickedId:any = (event.target as HTMLTextAreaElement).closest('.chats-item');
-        clickedId = (clickedId as HTMLTextAreaElement).dataset.id
+      else if(target.className.includes('clickable-chat')){
+        let clickedId: string | undefined = (target.closest('.chats-item') as HTMLTextAreaElement).dataset.id;
         let currentRoom = this.props.chatRooms.filter(item => item.id == clickedId);
+        if(!currentRoom){
+          return;
+        }
         let roomData = currentRoom[0];
         let content = new ChatCurrent(roomData).render();
 
@@ -170,6 +174,7 @@ class Chats extends Block {
       currentChatRoom: data.currentChatRoom ? data.currentChatRoom.content : null,
       profileBtn: new Button(data.profileBtn).render(),
       users: data.currentChatRoom ? userList.join('\n') : null,
+      showInput: data.currentChatRoom ? 'flex' : 'none',
       history: '',
     });
   }

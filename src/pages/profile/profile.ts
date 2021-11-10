@@ -12,6 +12,10 @@ import { validationForm } from '../../utils/validation';
 const templateForm = Handlebars.compile(ProfileForm);
 const profileDataRequester = new UserAuthController();
 
+const OLD_PASSWORD = 0;
+const NEW_PASSWORD_INPUT_NUMBER = 1;
+const NEW_PASSWORD_INPUT_NUMBER_REPEAT = 2;
+
 class Profile extends Block {
   constructor(props) {
     super('div', {...props,
@@ -61,10 +65,11 @@ class Profile extends Block {
           });
           if (document.querySelectorAll('.input-error').length == 0){
             let inputs = document.querySelectorAll('.update-password input');
-            if ((inputs[1] as HTMLTextAreaElement).value == (inputs[2] as HTMLTextAreaElement).value){
-              profileDataRequester.changePassword((inputs[0] as HTMLTextAreaElement).value, (inputs[1] as HTMLTextAreaElement).value)
+            if ((inputs[NEW_PASSWORD_INPUT_NUMBER] as HTMLTextAreaElement).value == (inputs[NEW_PASSWORD_INPUT_NUMBER_REPEAT] as HTMLTextAreaElement).value){
+              profileDataRequester.changePassword((inputs[OLD_PASSWORD] as HTMLTextAreaElement).value, (inputs[NEW_PASSWORD_INPUT_NUMBER] as HTMLTextAreaElement).value)
               .then(() => {
-                toggleModal('.update-password-wrapper')
+                toggleModal('.update-password-wrapper');
+                inputs.forEach((input:HTMLTextAreaElement) => input.value = '')
               })
               .catch(data => console.log(JSON.parse(data.response)));              
              }

@@ -13,6 +13,7 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
     alias: {
       handlebars: 'handlebars/dist/handlebars.min.js',
+      root: path.resolve('./src'),
     },
   },
   module: {

@@ -175,10 +175,11 @@
         align-items: flex-start;
         text-align: center;
         padding: 5px;
+        position: relative;
 
         .chat-history{
             max-height: 100vh;
-            height: 70%;            
+            height: 100%;            
             width: 100%;
             display: flex;
             align-items: flex-end;
@@ -186,7 +187,7 @@
             justify-content: end;
             margin-bottom: 10px;
             color: $label-color;
-            padding: 20px;
+            padding: 20px 20px 50px;
             .chat-msg-other__wrapper, .chat-msg-user__wrapper{
                 width: 100%;
                 margin-bottom: 7px;
@@ -220,6 +221,10 @@
             width: 100%; 
             display: flex;
             margin-bottom: 10px;
+            position: absolute;
+            bottom: 0;
+            right:0px;
+            padding: 0 10px;
 
             .chat-message-field{
                 width: 100%;

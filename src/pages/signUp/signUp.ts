@@ -41,9 +41,11 @@ class SignUp extends Block{
     }
 
     clickHandler (event: Event){
-        if(event.target){
+        const target = event.target as HTMLTextAreaElement;
+
+        if(target){
             event.preventDefault();
-            if((event.target as HTMLTextAreaElement).id === 'signup-btn'){
+            if(target.id === 'signup-btn'){
                 let inputs = document.querySelectorAll('.input-block input');
                 inputs.forEach((input) => {
                     console.log((input as HTMLTextAreaElement).dataset.type, (input as HTMLTextAreaElement).value);
@@ -66,7 +68,7 @@ class SignUp extends Block{
                     }
                 }
             }
-            else if((event.target as HTMLTextAreaElement).id === 'signin-btn'){
+            else if(target.id === 'signin-btn'){
                 router.go('/');
             }
 
